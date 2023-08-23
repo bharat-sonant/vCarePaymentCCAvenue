@@ -6,7 +6,7 @@ console.log(localStorage.getItem("city"));
 let firebaseConfig = {
   apiKey: "AIzaSyBGZ_IB4y5Ov1nuqIhWndGU8hfJadlE85I",
   authDomain: "dtdnavigator.firebaseapp.com",
-  databaseURL: "https://dtdmnz-test.firebaseio.com",
+  databaseURL: "https://dtdnavigatortesting.firebaseio.com/",
   projectId: "dtdnavigator",
   storageBucket: "dtdnavigator.appspot.com",
   messagingSenderId: "381118272786",

@@ -296,3 +296,12 @@ export const getDistanceFromLatLonInKm=(lat1, lon1, lat2, lon2)=> {
   return R * c; // in metres
 }
 
+export const generateRandomString=(length)=>{
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomIndex);
+  }
+  return result;
+}

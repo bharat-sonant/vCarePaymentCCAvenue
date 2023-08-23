@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div>
       <DashboardForm/>
-      < Footer/> 
+      {/* < Footer/>  */}
     </div>
 
   )

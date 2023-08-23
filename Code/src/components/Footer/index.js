@@ -1,60 +1,62 @@
 import React,{ useEffect, useState } from 'react';
 import './index.css'
-import {useNavigate, useParams} from 'react-router-dom';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 // import {ref as ref_storage,getDownloadURL} from "firebase/storage";
 // import {storage} from '../../Firebase';
 
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FolderIcon from '@mui/icons-material/Folder';
 import HomeIcon from '@mui/icons-material/Home';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import { dividerClasses } from '@mui/material';
+import HistoryIcon from '@mui/icons-material/History';
+import PaymentsIcon from '@mui/icons-material/Payments';
 
  const Footer=()=> {
-  const navigate=useNavigate()
-  const {userId,city}=useParams();
-  const [selectedCity,setSelectedCity]=useState("");
-  const [value, setValue] = useState('/');
-
-  useEffect(() => {    
-            if(city!=null) {
-                setSelectedCity(city);
-                localStorage.setItem('userId',userId);
-                localStorage.setItem('city',city);
-                // getUsersPortelData();
-            }
-            else {
-                setSelectedCity(localStorage.getItem('city'));
-            }
+  const navigate=useNavigate();
+  const location = useLocation();
+  // const {userId,city}=useParams();
+  // const [selectedCity,setSelectedCity]=useState("");
+  const [value, setValue] = useState(location.pathname);
+  useEffect(() => {   
+    
+            // if(city!=null) {
+            //     setSelectedCity(city);
+            //     localStorage.setItem('userId',userId);
+            //     localStorage.setItem('city',city);
+            //     // getUsersPortelData();
+            // }
+            // else {
+            //     setSelectedCity(localStorage.getItem('city'));
+            // }
     
         },[]);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (e,newValue) => {
     setValue(newValue);
     navigate(newValue)
   };
 
   return (
     <div className='col-md-12 d-flex justify-content-center'>
-    <BottomNavigation className='bottom-navigation' sx={{ width: 500 }} value={value} onChange={handleChange}>
-      <BottomNavigationAction
+    <BottomNavigation className='bottom-navigation' sx={{ width: '100%' }} value={value} onChange={handleChange}>
+       <BottomNavigationAction
         label="Home"
         value="/"
-        icon={<HomeIcon  htmlColor='white'/>}
+        icon={<HomeIcon/>}
       />
-      <BottomNavigationAction
+    <BottomNavigationAction
         label="Payment History"
-        value="payment-history"
-        icon={<ReceiptLongIcon htmlColor='white'/>}
+        value="/payment-history"
+        icon={<PaymentsIcon htmlColor='white'/>}
         
       />
-      {/* <BottomNavigationAction
-        label="Nearby"
-        value="nearby"
-        icon={<LocationOnIcon />}
-      /> */}
+      <BottomNavigationAction
+        label="Transaction History"
+        value="/transaction-history"
+        icon={<HistoryIcon  htmlColor='white'/>}
+      />
+      
+     
       {/* <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} /> */}
     </BottomNavigation>
     </div>

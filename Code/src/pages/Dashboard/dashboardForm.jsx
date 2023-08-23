@@ -11,14 +11,7 @@ import { showAlert } from '../../services/commonService';
 import { getCardWardMapping } from '../../services/formService';
 import { useNavigate } from 'react-router-dom';
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-)
+
 const DashboardForm=()=>{
   const navigate=useNavigate();
   const [cardNo,setCardNo]=useState('');
@@ -32,7 +25,8 @@ const DashboardForm=()=>{
   }
   const handleSubmit=async()=>{
     if(cardNo===""){
-      showAlert('Please enter card no.','error');
+      setError(true)
+      showAlert('Please enter card no.','error'); 
       return;
     }
     await getCardWardMapping(cardNo).then(data=>{
@@ -40,6 +34,7 @@ const DashboardForm=()=>{
         setError(true);
       }
       else{
+        localStorage.setItem("cardNo","MNZ"+cardNo)
         navigate('/cardDetail/'+data.ward+"/"+data.line+"/"+cardNo)
       }
     })

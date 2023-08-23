@@ -3,6 +3,8 @@ import {Route,Routes,BrowserRouter} from 'react-router-dom';
 import Dashbord from '../Dashboard/dashboard.js';
 import Footer from '../../components/Footer/index.js';
 import CardDetails from '../Card Detail/cardDetails.jsx';
+import PaymentHistory from '../Payment History/paymentHistory.jsx';
+import TransactionHistory from '../Transaction History/transactionHistory.jsx';
 
 
 const RouterComponent=() => {
@@ -13,7 +15,8 @@ const RouterComponent=() => {
       <Route path='/:userId/:city' element={<Dashbord/>} />
         <Route path='/' element={<Dashbord />} />
         <Route path='/cardDetail/:ward/:line/:card' element={<CardDetails/>} />
-        {/* <Route path='/payment-history' element={<Dashbord />} /> */}
+        <Route path='/payment-history' element={<PaymentHistory/>} /> 
+        <Route path='/transaction-history' element={<TransactionHistory/>} /> 
 
         {/* <Route path='/dashboard' element={<Dashbord />} />
         <Route path='/:userId/:city' element={<Topbar />} />
