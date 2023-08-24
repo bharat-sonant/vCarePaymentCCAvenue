@@ -153,8 +153,8 @@ function PaymentButton({transactionAmount,monthYear}) {
 
   }
   return (
-    <div className='d-flex align-items-center justify-content-center'>
-                  <Button onClick={savePaymentHistory} variant="contained" size='large' sx={{p:'10px 30px',textTransform: 'none',background:'#6200ED',fontWeight:'bold',mt:5,'&:focus':{background:'green'},'&:hover':{background:'green'}}}>Pay Now</Button>
+    <div className='d-flex align-items-center justify-content-center' >
+                  <Button onClick={savePaymentHistory} variant="contained" size='large' sx={{position:'absolute',bottom:'8vh', p:'10px 30px',textTransform: 'none',background:'#6200ED',fontWeight:'bold','&:focus':{background:'green'},'&:hover':{background:'green'}}}>Pay Now</Button>
     </div>
   );
 }

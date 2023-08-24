@@ -10,6 +10,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
 import HistoryIcon from '@mui/icons-material/History';
 import PaymentsIcon from '@mui/icons-material/Payments';
+import { Typography } from '@mui/material';
 
  const Footer=()=> {
   const navigate=useNavigate();
@@ -38,20 +39,20 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 
   return (
     <div className='col-md-12 d-flex justify-content-center'>
-    <BottomNavigation className='bottom-navigation' sx={{ width: '100%' }} value={value} onChange={handleChange}>
+    <BottomNavigation className='bottom-navigation' sx={{ width: '100%', }} value={value} onChange={handleChange}>
        <BottomNavigationAction
         label="Home"
         value="/"
         icon={<HomeIcon/>}
       />
     <BottomNavigationAction
-        label="Payment History"
+        label={<Typography style={{ fontSize: '10px',fontWeight:'bold' }}>Payment History</Typography>}
         value="/payment-history"
         icon={<PaymentsIcon htmlColor='white'/>}
         
       />
       <BottomNavigationAction
-        label="Transaction History"
+          label={<Typography style={{ fontSize: '10px',fontWeight:'bold' }}>Transaction History</Typography>}
         value="/transaction-history"
         icon={<HistoryIcon  htmlColor='white'/>}
       />

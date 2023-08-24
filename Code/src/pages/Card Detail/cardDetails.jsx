@@ -23,32 +23,30 @@ const CardDetails=()=> {
     
 
     return (
-    <div>
+    <div >
       <Header title={'Card Details'}/>
-        <div className='col-lg-12 d-flex justify-content-center align-items-center' >
-          <Card className='col-lg-4 ' sx={{position:'relative',top:'20vh'}} >
-            
+        <div className='d-flex justify-content-center' style={{width:'100% !imporant'}} >
+        <Card  sx={{boxShadow: '1px 1px 2px #6200ED',position:'absolute',top:'30vh',width: { xs: '95%',sm:'60%',md: '50%',lg:'30%' }}}>
           <CardHeader className='card-header ' title="Card Details" /> <Divider/>
             <CardContent className='card-body'>
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                    <div className='col-lg-12 d-flex row'>
-                    <label className='form-label col-lg-3' htmlFor="">Card No. :</label><Typography className='col-lg-3' variant='subtitle1'>{respObject.cardNo}</Typography>
+                  <Box >
+                    <div className='col-md-12 d-flex'>
+                    <label className='col-md-3 '>Card No. :</label><Typography className='col-md-9'>{respObject.cardNo}</Typography>
                     </div>
-                    <div className='col-lg-12 d-flex row'>
-                    <label className='form-label col-lg-3' htmlFor="">Name :</label><Typography className='col-lg-3' variant='subtitle1'>{respObject.name}</Typography>
+                    <div className='col-md-12 d-flex'>
+                    <label className='col-md-3'>Name :</label><Typography className='col-md-9'>{respObject.name}</Typography>
                     </div>
-                    <div className='col-lg-12 d-flex row'>
-                    <label className='form-label col-lg-3' htmlFor="">Address :</label><Typography className='col-lg-3' variant='subtitle1'>{respObject.address}</Typography>
+                    <div className='col-md-12 d-flex'>
+                    <label className='col-md-3'>Address :</label><Typography className='col-md-9'>{respObject.address}</Typography>
                     </div>
-                    <div className='col-lg-12 d-flex row'>
-                    <label className='form-label col-lg-3' htmlFor="">Mobile No :</label><Typography className='col-lg-3' variant='subtitle1'>{respObject.mobile}</Typography>
+                    <div className='col-md-12 d-flex'>
+                    <label className='col-md-3'>Mobile No :</label><Typography className='col-md-9'>{respObject.mobile}</Typography>
                     </div>
-                    <div className='col-lg-12 d-flex row'>
-                    <label className='form-label col-lg-3' htmlFor="">Entity Type :</label><Typography className='col-lg-3' variant='subtitle1'>{respObject.cardType}</Typography>
+                    <div className='col-md-12 d-flex'>
+                    <label className='col-md-3'>Entity Type :</label><Typography className='col-md-9' >{respObject.cardType}</Typography>
                     </div>
                   </Box>
             </CardContent>
-          
         </Card>    
         </div>
 
