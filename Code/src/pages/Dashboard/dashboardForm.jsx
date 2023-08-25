@@ -25,8 +25,7 @@ const DashboardForm=()=>{
   }
   const handleSubmit=async()=>{
     if(cardNo===""){
-      setError(true)
-      showAlert('Please enter card no.','error'); 
+      setError(true);
       return;
     }
     await getCardWardMapping(cardNo).then(data=>{
@@ -46,7 +45,8 @@ const DashboardForm=()=>{
         <CardContent>
               <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                 <div className='col-lg-9'>
-                  <TextField onChange={handleOnChange} value={cardNo} type='' label="Card Number" id="inputCardNumber" sx={{ m: 1, width: '25ch'}}   error={error} helperText={error ? 'Enter valid card number' : ''}
+                  <TextField  onChange={handleOnChange} value={cardNo} type='' label="Card Number" id="inputCardNumber" sx={{ m: 1, width: '25ch'}}
+                    error={error} helperText={error ? 'Enter valid card number' : ''}
                      InputProps={{ startAdornment: <InputAdornment position="start" >MNZ</InputAdornment> }} />
                      
                 </div>
@@ -55,7 +55,7 @@ const DashboardForm=()=>{
                 </div>
               </Box>
         </CardContent>
-      {/* <CardActions>
+      {/* <CardActions> 
       
       </CardActions> */}
     </Card>

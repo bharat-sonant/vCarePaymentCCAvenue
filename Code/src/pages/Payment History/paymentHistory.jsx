@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './paymentHistory.css'
 import Footer from '../../components/Footer';
-import { Box, Card, CardContent, CardHeader, Divider, Typography,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,TableSortLabel,Toolbar,Paper, Checkbox, TableFooter, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button} from '@mui/material'
+import { Box, Typography,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Toolbar,Paper, Checkbox, Button} from '@mui/material'
 import { useEffect } from 'react';
 import { getPaymentCollectionHistory, saveCCAvenuePaymentRequestHistory } from '../../services/paymentHistoryService';
-import { generateRandomString, showAlert } from '../../services/commonService';
+import { showAlert } from '../../services/commonService';
 import Header from '../../components/Header';
+import { useNavigate } from 'react-router-dom';
 
 
 const PaymentHistory=()=> {
@@ -147,9 +148,13 @@ function EnhancedTableToolbar(props) {
   );
 }
 function PaymentButton({transactionAmount,monthYear}) {
-  const savePaymentHistory=()=>{
+  const navigate=useNavigate()
+  const savePaymentHistory=async()=>{
     if(transactionAmount>0){
-    saveCCAvenuePaymentRequestHistory(transactionAmount,monthYear);}
+    await saveCCAvenuePaymentRequestHistory(transactionAmount,monthYear);
+    await navigate('/payment-success')
+    
+  }
 
   }
   return (

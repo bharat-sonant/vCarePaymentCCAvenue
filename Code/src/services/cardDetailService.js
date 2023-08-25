@@ -5,6 +5,8 @@ export const getCardDetail=(ward,line,card) => {
       const path="Houses/"+ward+"/"+line+"/MNZ"+card
       getData(path).then((response) => {
         if(response!==null){
+          localStorage.setItem('name',response.name);
+          localStorage.setItem('cardType',response.cardType);
             resolve(response)
         }
         else{

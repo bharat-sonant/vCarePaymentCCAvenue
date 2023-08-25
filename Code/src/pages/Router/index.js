@@ -5,6 +5,8 @@ import Footer from '../../components/Footer/index.js';
 import CardDetails from '../Card Detail/cardDetails.jsx';
 import PaymentHistory from '../Payment History/paymentHistory.jsx';
 import TransactionHistory from '../Transaction History/transactionHistory.jsx';
+import PaymentCancel from '../Payment Status Page/paymentCancel.jsx';
+import PaymentSuccess from '../Payment Status Page/paymentSuccess.jsx';
 
 
 const RouterComponent=() => {
@@ -17,6 +19,8 @@ const RouterComponent=() => {
         <Route path='/cardDetail/:ward/:line/:card' element={<CardDetails/>} />
         <Route path='/payment-history' element={<PaymentHistory/>} /> 
         <Route path='/transaction-history' element={<TransactionHistory/>} /> 
+        <Route path='/payment-cancel' element={<PaymentCancel/>} /> 
+        <Route path='/payment-success' element={<PaymentSuccess/>} /> 
 
         {/* <Route path='/dashboard' element={<Dashbord />} />
         <Route path='/:userId/:city' element={<Topbar />} />

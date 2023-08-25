@@ -15,7 +15,6 @@ const CardDetails=()=> {
             getCardDetail(ward,line,card).then(data=>{
               if(data!==null){
                 setRespObject(data);
-                localStorage.setItem('name',data.name)
               }
             });
         }
@@ -26,7 +25,7 @@ const CardDetails=()=> {
     <div >
       <Header title={'Card Details'}/>
         <div className='d-flex justify-content-center' style={{width:'100% !imporant'}} >
-        <Card  sx={{boxShadow: '1px 1px 2px #6200ED',position:'absolute',top:'30vh',width: { xs: '95%',sm:'60%',md: '50%',lg:'30%' }}}>
+        <Card  sx={{boxShadow: '1px 1px 3px #6200ED',position:'absolute',top:'30vh',width: { xs: '95%',sm:'60%',md: '50%',lg:'30%' }}}>
           <CardHeader className='card-header ' title="Card Details" /> <Divider/>
             <CardContent className='card-body'>
                   <Box >

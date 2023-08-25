@@ -34,14 +34,11 @@ export const getPaymentCollectionHistory=() => {
         });
     });
   }
-  export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
-    
+export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
     const cardNo=localStorage.getItem('cardNo');
     let newKey=1;
     const date=dayjs().format('YYYY-MM-DD');
     let path="/PaymentCollectionInfo/CCAvenuePaymentRequestHistory/"+cardNo+"/"+date;
-  
-   
     const response=await getData(path);
       if(response!==null){
         let keyArray=Object.keys(response);
@@ -51,9 +48,13 @@ export const getPaymentCollectionHistory=() => {
         merchantTransactionId:cardNo+generateRandomString(4),
         monthYear:monthYear.toString(),
         transactionAmount:amount,
-        transactionDateTime:dayjs().format('YYYY-MM-DD HH:mm:ss')
+        transactionDateTime:dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        paymentCollectionById:'101',
+        paymentCollectionByName:'Self'
       }
     await saveData(path+"/"+newKey,dataObj)
+    localStorage.setItem('removePath',path+"/"+newKey)
     
     
   }
+  
