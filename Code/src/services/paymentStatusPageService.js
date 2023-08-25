@@ -24,7 +24,7 @@ export const saveCCAvenuePaymentTransactionHistory=async(data)=>{
     const date=data.transactionDateTime.split(' ')[0];
     const year=dayjs(date).format('YYYY');
     const month=dayjs(date).format('MMMM');
-    let path="PaymentCollectionInfo/CCAvenuePaymentTransactionHistory/"+cardNo+"/"+year+"/"+month+"/"+date+"/"
+    let path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo+"/"+year+"/"+month+"/"+date+"/"
     const resp=await getData(path+"lastKey");
     const newKey=resp!==null?Number(resp)+1:1;
     data.cardType=localStorage.getItem('cardType');
@@ -46,7 +46,7 @@ export const savePaymentCollectionHistory=async(yearMonth)=>{
 export const saveCCAvenuePaymentCollectorHistory=async(data) => {
         const date=data.transactionDateTime.split(' ')[0];
         const id=data.paymentCollectionById;
-        const path="PaymentCollectionInfo/CCAvenuePaymentCollectorHistory/"+id+"/"+date+"/";
+        const path="PaymentCollectionInfo/PaymentCollectorHistory/"+id+"/"+date+"/";
         const resp=await getData(path+"lastKey");
         const newKey=resp!==null?Number(resp)+1:1;
 

@@ -38,7 +38,7 @@ export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
     const cardNo=localStorage.getItem('cardNo');
     let newKey=1;
     const date=dayjs().format('YYYY-MM-DD');
-    let path="/PaymentCollectionInfo/CCAvenuePaymentRequestHistory/"+cardNo+"/"+date;
+    let path="/PaymentCollectionInfo/PaymentRequestHistory/"+cardNo+"/"+date;
     const response=await getData(path);
       if(response!==null){
         let keyArray=Object.keys(response);
@@ -49,7 +49,7 @@ export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
         monthYear:monthYear.toString(),
         transactionAmount:amount,
         transactionDateTime:dayjs().format('YYYY-MM-DD HH:mm:ss'),
-        paymentCollectionById:'101',
+        paymentCollectionById:'100',
         paymentCollectionByName:'Self'
       }
     await saveData(path+"/"+newKey,dataObj)

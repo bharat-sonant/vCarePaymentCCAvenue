@@ -1,9 +1,11 @@
 
   .top-header{
     background-color: #6200ED !important;
+    position:fixed;
     top:0px;
     z-index: 999;
     height: 8vh;
+    width: 100%;
     /* font-weight: bold; */
   }
   
