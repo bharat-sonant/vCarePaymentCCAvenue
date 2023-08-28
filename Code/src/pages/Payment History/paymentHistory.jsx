@@ -57,7 +57,7 @@ const PaymentHistory=()=> {
   return (
   <div>
      <Header title={'Payment History'}/>
-    <div className='col-lg-12 d-flex justify-content-center align-items-center' >
+    <Box className='col-lg-12 d-flex justify-content-center align-items-center ' sx={{pt:8,pb:10}}>
     <Box  sx={{ width: '100%', mb: 2 }} >
       <Paper >
       <EnhancedTableToolbar numSelected={selectedRows.length} />
@@ -101,7 +101,7 @@ const PaymentHistory=()=> {
     </Toolbar>
     </Paper>
     </Box>
-    </div>
+    </Box>
     <PaymentButton transactionAmount={totalPayment} monthYear={selectedRows}/>
   <Footer />
   </div>
