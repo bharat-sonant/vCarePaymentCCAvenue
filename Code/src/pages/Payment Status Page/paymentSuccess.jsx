@@ -17,7 +17,6 @@ const setDefaults=()=>{
     await saveCCAvenuePaymentCollectorHistory(response);
     await deleteCCAvenuePaymentRequestHistory();
     await navigate('/transaction-history');
-    console.log('hello')
   }
   })
 
