@@ -132,3 +132,15 @@ margin: 10px 0px;
   .Mui-selected{
     color: white;
   }
+  .css-1gnz8kn-MuiBottomNavigation-root{
+    width: 500px !important;
+    border-radius: 0px;
+  }
+  @media (max-width: 768px)  {
+    .css-1gnz8kn-MuiBottomNavigation-root{
+        width: 100% !important;
+        border-radius: 0px;
+      }}
+      /* .css-1gnz8kn-MuiBottomNavigation-root{
+        margin-left: 4px !important;
+      } */

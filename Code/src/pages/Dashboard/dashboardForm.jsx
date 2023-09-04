@@ -10,59 +10,68 @@ import { useState } from 'react';
 import { showAlert } from '../../services/commonService';
 import { getCardWardMapping } from '../../services/formService';
 import { useNavigate } from 'react-router-dom';
+import Header from '../../components/Header';
 
 
-const DashboardForm=()=>{
-  const navigate=useNavigate();
-  const [cardNo,setCardNo]=useState('');
-  const [error,setError]=useState(false)
-  const handleOnChange=(e)=>{
+const DashboardForm = () => {
+  const navigate = useNavigate();
+  const [cardNo, setCardNo] = useState('');
+  const [error, setError] = useState(false)
+  const handleOnChange = (e) => {
     const numberPattern = /^\d+$/;
-    if(numberPattern.test(e.target.value)|| e.target.value===''){
-    setCardNo(e.target.value);
-    setError(false)
+    if (numberPattern.test(e.target.value) || e.target.value === '') {
+      setCardNo(e.target.value);
+      setError(false)
     }
   }
-  const handleSubmit=async()=>{
-    if(cardNo===""){
+  const handleSubmit = async () => {
+    if (cardNo === "") {
       setError(true);
       return;
     }
-    await getCardWardMapping(cardNo).then(data=>{
-      if(data===null){
+    await getCardWardMapping(cardNo).then(data => {
+      if (data === null) {
         setError(true);
       }
-      else{
-        localStorage.setItem("cardNo","MNZ"+cardNo)
-        navigate('/cardDetail/'+data.ward+"/"+data.line+"/"+cardNo)
+      else {
+        localStorage.setItem("cardNo", "MNZ" + cardNo)
+        navigate('/cardDetail/' + data.ward + "/" + data.line + "/" + cardNo)
       }
     })
 
   }
   return (
-    <div className='col-lg-12 d-flex justify-content-center align-items-center' >
-      <Card className='col-lg-3 ' sx={{position:'relative',top:'20vh'}} >
-        <CardContent>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                <div className='col-lg-9'>
-                  <TextField  onChange={handleOnChange} value={cardNo} type='' label="Card Number" id="inputCardNumber" sx={{ m: 1, width: '25ch'}}
-                    error={error} helperText={error ? 'Enter valid card number' : ''}
-                     InputProps={{ startAdornment: <InputAdornment position="start" >MNZ</InputAdornment> }} />
-                     
-                </div>
-                <div className='d-flex align-items-center'>
-                  <Button variant="contained" color={error?'error':'primary'} onClick={handleSubmit}>Submit</Button>
-                </div>
-              </Box>
-        </CardContent>
-      {/* <CardActions> 
+    <div className='back-penal'>
+      <div className='main-container container-fluid container-fluid-44 m-auto'>
+     <Header title={'CC Avenue Payment'}/>
+        <div className='row'>
+          <div className='col-12'>
+            <div className='d-flex  align-items-center ' style={{ height: '100vh' }}>
+              <Card style={{ width: '100%' ,boxShadow:'none' }} >
+                <CardContent>
+                  <Box >
+
+                    <TextField onChange={handleOnChange} value={cardNo} type='' label="Card Number" id="inputCardNumber" sx={{ width: '100%',marginBottom:'30px' }}
+                      error={error} helperText={error ? 'Enter valid card number' : ''}
+                      InputProps={{ startAdornment: <InputAdornment position="start" >MNZ</InputAdornment> }} />
+
+
+                    <div className='d-flex align-items-center'>
+                      <Button className='btn'  variant="contained" color={error ? 'error' : 'primary'} onClick={handleSubmit} style={{width:'100%'}}>Submit</Button>
+                    </div>
+                  </Box>
+                </CardContent>
+                {/* <CardActions> 
       
       </CardActions> */}
-    </Card>
-
-              
-            
+              </Card>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+
   );
 }
 

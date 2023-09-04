@@ -43,8 +43,11 @@ import { Typography } from '@mui/material';
        <BottomNavigationAction
         label="Home"
         value="/"
-        icon={<HomeIcon/>}
+        // icon={<HomeIcon/>}
+        icon={<HomeIcon htmlColor='white'/>}
+
       />
+      
     <BottomNavigationAction
         label={<Typography style={{ fontSize: '10px',fontWeight:'bold' }}>Payment History</Typography>}
         value="/payment-history"

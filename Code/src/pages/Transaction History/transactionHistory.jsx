@@ -1,40 +1,42 @@
-  import React, { useEffect } from 'react'
-  import Footer from '../../components/Footer'
-  import Header from '../../components/Header'
-  import { Box,Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
+import React, { useEffect } from 'react'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
+import { Box, Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 import { getCCAvenuePaymentTransactionHistory } from '../../services/transactionHistoryService';
 import { useState } from 'react';
 import { showAlert } from '../../services/commonService';
+import './transactionHistory.css'
 
-  const TransactionHistory=()=> {
-    const [historyArray,setHistoryArray]=useState([])
-    useEffect(() => {
-      setDefault()
-     
-    }, [])
-    
-    const setDefault=()=>{
-      getCCAvenuePaymentTransactionHistory().then(list=>{
-        if(list!==null){
-          setHistoryArray([...list])
-        }
-        else{
-          showAlert('NO history found..','error')
-        }
-      })
-    }
-    
-    return (
-      <div>
-        <Header title={'Transaction History'}/>
-        
-        <Box className="d-grid" sx={{pt:10,pb:10,gridTemplateColumns:{ xs: '100%',sm:'100%',md: '50% 50%',lg:'33.33% 33.33% 33.33%' }}}>
-       {historyArray.map(item=>(
-        <div className='d-flex justify-content-center p-2'  key={item.key} >
-        <Card   sx={{ boxShadow: '1px 1px 3px #6200ED',width:'100%','&:hover':{boxShadow: '2px 2px 4px #6200ED',backgroundColor:'whitesmoke'}}}>
-          {/* <CardHeader className='card-header ' title="Card Details" /> <Divider/> */}
-            <CardContent className='card-body '>
-                  <Box >
+const TransactionHistory = () => {
+  const [historyArray, setHistoryArray] = useState([])
+  useEffect(() => {
+    setDefault()
+
+  }, [])
+
+  const setDefault = () => {
+    getCCAvenuePaymentTransactionHistory().then(list => {
+      if (list !== null) {
+        setHistoryArray([...list])
+      }
+      else {
+        showAlert('NO history found..', 'error')
+      }
+    })
+  }
+
+  return (
+    <div className='back-penal'>
+      <div className='main-container container-fluid container-fluid-44 m-auto'>
+        <Header title={'Transaction History'} />
+        <div >
+          <Box className="d-grid " sx={{ pt: 8, pb: 10, gridTemplateColumns: { xs: '100%', sm: '100%', md: '50% 50%', lg: '100% ' } }}>
+            {historyArray.map(item => (
+              <div className='d-flex justify-content-center p-3' key={item.key} >
+                <Card className='card'>
+                  {/* <CardHeader className='card-header ' title="Card Details" /> <Divider/> */}
+                  <CardContent className='card-body '>
+                    {/* <Box >
                     <div className='col-md-12 d-flex'>
                     <label >Order Id :</label><Typography  ml={1}>{item.orderId}</Typography>
                     </div>
@@ -59,16 +61,90 @@ import { showAlert } from '../../services/commonService';
                     <div className='col-md-12 d-flex'>
                     <label>Status :</label><Typography ml={1}>{item.status}</Typography>
                     </div>
-                  </Box>
-            </CardContent>
-        </Card>
+                  </Box> */}
+                    <div className='table-responsive'>
+                      <table className="table table-one-iner mb-0">
+
+                        <tbody>
+                          <tr >
+                            <th className='border-0 text-left ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row" >
+                              <snap className='heading0'> Order  </snap>
+                            </th>
+                            {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
+                            <td className='border-0 ' style={{ width: '0%', padding: '5x' }}>
+                              {item.orderId}
+                            </td>
+                          </tr>
+                          <tr >
+                            <th className='border-0 text-left ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row" >
+                              <snap className='heading0'> Transaction Date  </snap>
+                            </th>
+                            {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
+                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                              {item.transactionDate}
+                            </td>
+                          </tr>
+                          <tr >
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                              <snap className='heading0'>  Reference Id </snap>
+                            </th>
+                            {/* <td className='border-0 mb-2' style={{ width: '5%', }}></td> */}
+                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                              {item.referenceId}
+                            </td>
+                          </tr>
+
+
+                          <tr  >
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                              <snap className='heading0'> Pay Method  </snap>
+                            </th>
+                            {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
+                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                              {item.payMethod}
+                            </td>
+                          </tr>
+                          <tr >
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                              <snap className='heading0'> Collectore Name  </snap>
+                            </th>
+                            {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
+                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                              {item.collectorName}
+                            </td>
+                          </tr>
+                          <tr >
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                              <snap className='heading0'> Paid Month  </snap>
+                            </th>
+                            {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
+                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                              {item.paidMonth}
+                            </td>
+                          </tr>
+                          <tr >
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                              <snap className='heading0'>Status  </snap>
+                            </th>
+                            {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
+                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                              {item.status}
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </Box>
         </div>
-       ))}
-       </Box>
-
-        <Footer/>
+        <Footer />
       </div>
-    )
-  }
+    </div>
+  )
+}
 
-  export default TransactionHistory
+export default TransactionHistory

@@ -1,6 +1,30 @@
-.scroll{
+/* .scroll{
    max-height:'100px';
    overflow-y: scroll;
    background-color: red;
   color: rgba(137, 43, 226, 0.605);
+} */
+.css-y8ay40-MuiTableCell-root{
+  padding: 10px !important;
 }
+.css-1ex1afd-MuiTableCell-root{
+  padding: 10px !important;
+}
+.btn{
+  color: #fff !important;
+  margin-bottom: 30px !important; 
+}
+button:focus:not(:focus-visible){
+  outline: none !important;
+}
+.btn-check:focus+.btn, .btn:focus{
+  box-shadow: none !important;
+}
+.css-6nioqg-MuiButtonBase-root-MuiCheckbox-root{
+  color: #6c63ff !important;
+}
+.css-1u0uqpm-MuiButtonBase-root-MuiCheckbox-root{
+  color: #6c63ff !important;
+  
+}
+

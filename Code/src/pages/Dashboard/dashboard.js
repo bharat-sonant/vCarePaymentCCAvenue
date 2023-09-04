@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Header title={'CC Avenue Payment'}/>
+      {/* <Header title={'CC Avenue Payment'}/> */}
       <DashboardForm/>
       {/* < Footer/>  */}
     </div>

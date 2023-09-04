@@ -7,6 +7,9 @@ import { getPaymentCollectionHistory, saveCCAvenuePaymentRequestHistory } from '
 import { showAlert } from '../../services/commonService';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
+// import Button from '@mui/material/Button';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+
 
 
 const PaymentHistory=()=> {
@@ -55,18 +58,20 @@ const PaymentHistory=()=> {
         setTotalPayment(0);
   };
   return (
-  <div>
+    <div className='back-penal'>
+    <div className='main-container container-fluid container-fluid-44 m-auto'>
      <Header title={'Payment History'}/>
-    <Box className='col-lg-12 d-flex justify-content-center align-items-center ' sx={{pt:8,pb:10}}>
-    <Box  sx={{ width: '100%', mb: 2 }} >
+     <div className='row'>
+          <div className=' col-md-12 mb-5 '>
+    <Box  sx={{ width: '100%', mb: 3 , pt:8}} >
       <Paper >
       <EnhancedTableToolbar numSelected={selectedRows.length} />
-    <TableContainer  style={{height:400}}>
+    <TableContainer  >
       <Table stickyHeader>
-        <TableHead  style={{position:'sticky', zIndex:999}}>
+        <TableHead  style={{position:'sticky', zIndex:99}}>
           <TableRow>
             <TableCell padding="checkbox" variant='head'>
-              <Checkbox  sx={{color: '#6200ED','&.Mui-checked': {color:' #6200ED'}}} onClick={handleSelectAllClick}
+              <Checkbox  sx={{color: '#6200ED','&.Mui-checked': {color:' #6c63ff'}}} onClick={handleSelectAllClick}
                checked={selectedRows.length===checkboxes.length}
                /> </TableCell>
             <TableCell className='table-header'  variant='head'>Month-Year</TableCell>
@@ -95,15 +100,21 @@ const PaymentHistory=()=> {
     </TableContainer>
     <Toolbar sx={{ pl: { sm: 2 },pr: { xs: 1, sm: 1 }}}>
         <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-          Total Amount: {totalPayment}
+          Total Amount: <CurrencyRupeeIcon style={{fontSize:'18px'}}/> {totalPayment}
         </Typography>
       
     </Toolbar>
+   
     </Paper>
-    </Box>
+
     </Box>
     <PaymentButton transactionAmount={totalPayment} monthYear={selectedRows}/>
+    {/* <Button  className='btn css-sghohy-MuiButtonBase-root-MuiButton-root ' >Pay Now </Button> */}
+   
   <Footer />
+  </div>
+  </div>
+  </div>
   </div>
 
   )
@@ -159,7 +170,7 @@ function PaymentButton({transactionAmount,monthYear}) {
   }
   return (
     <div className='d-flex align-items-center justify-content-center' >
-                  <Button onClick={savePaymentHistory} variant="contained" size='large' sx={{position:'absolute',bottom:'8vh', p:'10px 30px',textTransform: 'none',background:'#6200ED',fontWeight:'bold','&:focus':{background:'green'},'&:hover':{background:'green'}}}>Pay Now</Button>
+                  <Button onClick={savePaymentHistory} variant="contained" size='large'  className='btn css-sghohy-MuiButtonBase-root-MuiButton-root '>Pay Now</Button>
     </div>
   );
 }
