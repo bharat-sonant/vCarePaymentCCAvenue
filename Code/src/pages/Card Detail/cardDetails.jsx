@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import { useState } from 'react';
 import Header from '../../components/Header';
+import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSpeedDial';
 
 
 
@@ -105,8 +106,8 @@ const CardDetails = () => {
              
             {/* </div> */}
           </div>
-          
-          <Footer />
+          <NavSpeedDial/>
+          {/* <Footer /> */}
         </div>
       </div>
       </div>

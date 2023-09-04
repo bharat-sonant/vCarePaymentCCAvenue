@@ -6,6 +6,7 @@ import { getCCAvenuePaymentTransactionHistory } from '../../services/transaction
 import { useState } from 'react';
 import { showAlert } from '../../services/commonService';
 import './transactionHistory.css'
+import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSpeedDial';
 
 const TransactionHistory = () => {
   const [historyArray, setHistoryArray] = useState([])
@@ -141,7 +142,7 @@ const TransactionHistory = () => {
             ))}
           </Box>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   )

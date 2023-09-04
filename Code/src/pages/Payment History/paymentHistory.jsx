@@ -9,6 +9,7 @@ import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
 // import Button from '@mui/material/Button';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSpeedDial';
 
 
 
@@ -111,7 +112,7 @@ const PaymentHistory=()=> {
     <PaymentButton transactionAmount={totalPayment} monthYear={selectedRows}/>
     {/* <Button  className='btn css-sghohy-MuiButtonBase-root-MuiButton-root ' >Pay Now </Button> */}
    
-  <Footer />
+  {/* <Footer /> */}
   </div>
   </div>
   </div>
