@@ -12,7 +12,7 @@
   } */
   .header{
    
-      background-color: #6c63ff !important;
+      background-color: #24B903 !important;
       color: #fff;
   padding: 16px 14px !important;
   position: fixed;
@@ -22,22 +22,22 @@
  
   }
   .css-1gnz8kn-MuiBottomNavigation-root{
-    background-color: #6c63ff !important;
-      color: #fff !important;
+    background-color: #fff !important;
+      color: #C6C6C6 !important;
   }
   .css-10rr26n-MuiTypography-root{
-    font-size: 14px !important;
-    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px !important;
+    font-family: 'Roboto Flex' !important;
     font-weight: 500 !important;
   }
   .css-1qvr50w-MuiTypography-root{
     font-size: 16px !important;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Roboto Flex' !important;
     font-weight: 500 !important;
   }
   .css-185gdzj-MuiCardHeader-root{
-    font-size: 14px !important;
-    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px !important;
+    font-family: 'Roboto Flex' !important;
     font-weight: 500 !important;
     padding: 14px !important;
 
@@ -45,7 +45,7 @@
   @media (min-width: 768px) {
     .header{
    
-      background-color: #6c63ff !important;
+      background-color: #24B903 !important;
       color: #fff;
   padding: 14px 14px;
   position: fixed;
@@ -63,17 +63,17 @@
     overflow: hidden !important;
   }
   th{
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Roboto Flex' !important;
     font-weight: 600 !important;
     /* padding: 14px !important; */
-    font-size: 14px !important;
+    font-size: 16px !important;
 
   }
   td{
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Roboto Flex' !important;
     font-weight: 400 !important;
     /* padding: 14px !important; */
-    font-size: 14px !important;
+    font-size: 16px !important;
 
   }
 .css-46bh2p-MuiCardContent-root:last-child{
@@ -87,8 +87,8 @@
 }
 }
 .MuiTypography-h6{
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Roboto Flex' !important;
   font-weight: 600 !important;
   /* padding: 14px !important; */
-  font-size: 14px !important;
+  font-size: 16px !important;
 }

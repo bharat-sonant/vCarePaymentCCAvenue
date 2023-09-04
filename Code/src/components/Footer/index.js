@@ -44,20 +44,20 @@ import { Typography } from '@mui/material';
         label="Home"
         value="/"
         // icon={<HomeIcon/>}
-        icon={<HomeIcon htmlColor='white'/>}
+        icon={<HomeIcon htmlColor='#C6C6C6'/>}
 
       />
       
     <BottomNavigationAction
-        label={<Typography style={{ fontSize: '10px',fontWeight:'bold' }}>Payment History</Typography>}
+        label={<Typography style={{ fontSize: '10px',fontWeight:'bold',color:'#C6C6C6' }}>Payment History</Typography>}
         value="/payment-history"
-        icon={<PaymentsIcon htmlColor='white'/>}
+        icon={<PaymentsIcon htmlColor='#C6C6C6'/>}
         
       />
       <BottomNavigationAction
-          label={<Typography style={{ fontSize: '10px',fontWeight:'bold' }}>Transaction History</Typography>}
+          label={<Typography style={{ fontSize: '10px',fontWeight:'bold',color:'#C6C6C6', }}>Transaction History</Typography>}
         value="/transaction-history"
-        icon={<HistoryIcon  htmlColor='white'/>}
+        icon={<HistoryIcon  htmlColor='#C6C6C6'/>}
       />
       
      

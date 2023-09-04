@@ -5,10 +5,10 @@
   color: rgba(137, 43, 226, 0.605);
 } */
 .css-y8ay40-MuiTableCell-root{
-  padding: 10px !important;
+  padding: 8px !important;
 }
 .css-1ex1afd-MuiTableCell-root{
-  padding: 10px !important;
+  padding: 8px !important;
 }
 .btn{
   color: #fff !important;
@@ -21,10 +21,13 @@ button:focus:not(:focus-visible){
   box-shadow: none !important;
 }
 .css-6nioqg-MuiButtonBase-root-MuiCheckbox-root{
-  color: #6c63ff !important;
+  color: #24B903 !important;
 }
 .css-1u0uqpm-MuiButtonBase-root-MuiCheckbox-root{
-  color: #6c63ff !important;
+  color: #24B903 !important;
   
+}
+.css-1u0uqpm-MuiButtonBase-root-MuiCheckbox-root{
+  padding: 8px !important;
 }
 
