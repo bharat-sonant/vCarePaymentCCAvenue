@@ -16,7 +16,7 @@
       color: #fff;
   padding: 16px 14px !important;
   position: fixed;
-  width: 100%;
+  width: 500px;
   z-index: 999;
   
  
@@ -42,14 +42,14 @@
     padding: 14px !important;
 
   }
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     .header{
    
       background-color: #24B903 !important;
       color: #fff;
   padding: 14px 14px;
   position: fixed;
-  width: 500px;
+  width: 100%;
   z-index: 999;
  
   }
@@ -92,6 +92,4 @@
   /* padding: 14px !important; */
   font-size: 16px !important;
 }
-.css-i4bv87-MuiSvgIcon-root{
-  color: #fff;
-}
+

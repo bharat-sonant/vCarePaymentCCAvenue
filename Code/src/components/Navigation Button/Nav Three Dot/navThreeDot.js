@@ -45,7 +45,8 @@ export default function NavThreeDot() {
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
-        sx={{p:0}}
+        sx={{p:0, color:'#fff'}}
+        
       >
         <MoreVertIcon />
       </IconButton>
