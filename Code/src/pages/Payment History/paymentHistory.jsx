@@ -179,7 +179,7 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
   }
   return (
     <div className='d-flex align-items-center justify-content-center' >
-                  <Button onClick={savePaymentHistory} variant="contained" size='large'  className='btn css-sghohy-MuiButtonBase-root-MuiButton-root ' hidden={hidden}>Pay Now</Button>
+                  <Button sx={{backgroundColor:'#24B903'}} onClick={savePaymentHistory} variant="contained" size='large'  className='btn' hidden={hidden}>Pay Now</Button>
     </div>
   );
 }

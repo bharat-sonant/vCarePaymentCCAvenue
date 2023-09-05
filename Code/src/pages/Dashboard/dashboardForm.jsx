@@ -11,6 +11,7 @@ import { showAlert } from '../../services/commonService';
 import { getCardWardMapping } from '../../services/formService';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
+import { colors } from '@mui/material';
 
 
 const DashboardForm = () => {
@@ -51,20 +52,20 @@ const DashboardForm = () => {
                 <CardContent>
                   <Box >
 
-                    <TextField onChange={handleOnChange} value={cardNo} type='' label="Card Number" id="inputCardNumber" sx={{ width: '100%',marginBottom:'30px' }}
+                    <TextField  onChange={handleOnChange} value={cardNo} type='' label="Card Number" id="inputCardNumber" sx={{ width: '100%',marginBottom:'30px',}} color='success'
                       error={error} helperText={error ? 'Enter valid card number' : ''}
                       InputProps={{ startAdornment: <InputAdornment position="start" >MNZ</InputAdornment> }} />
 
 
                     <div className='d-flex align-items-center'>
-                      <Button className='btn'  variant="contained" color={error ? 'error' : 'primary'} onClick={handleSubmit} style={{width:'100%'}}>Submit</Button>
+                      <Button className='btn '  variant="contained"  onClick={handleSubmit} style={{width:'100%',backgroundColor:error ? 'red' : '#24B903'}}>Submit</Button>
                     </div>
                   </Box>
                 </CardContent>
                 {/* <CardActions> 
       
       </CardActions> */}
-              </Card>
+              </Card>             
             </div>
           </div>
         </div>

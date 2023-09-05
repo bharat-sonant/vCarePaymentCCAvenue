@@ -97,11 +97,11 @@ const TransactionHistory = () => {
 
                           <tr  >
                             <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
-                              <snap className='heading0'> Transaction Amount  </snap>
+                              <snap className='heading0'> Transaction Amount (₹) </snap>
                             </th>
                             {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
                             <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
-                              {item.transactionAmount}
+                              {item.transactionAmount.toFixed(2)}
                             </td>
                           </tr>
 
@@ -115,15 +115,15 @@ const TransactionHistory = () => {
                               {item.payMethod}
                             </td>
                           </tr>
-                          <tr >
+                          {/* <tr >
                             <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
                               <snap className='heading0'> Collectore Name  </snap>
                             </th>
-                            {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
+                          
                             <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
                               {item.collectorName}
                             </td>
-                          </tr>
+                          </tr> */}
                           <tr >
                             <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
                               <snap className='heading0'> Paid Month  </snap>
