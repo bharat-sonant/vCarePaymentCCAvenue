@@ -68,67 +68,77 @@ const TransactionHistory = () => {
 
                         <tbody>
                           <tr >
-                            <th className='border-0 text-left ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row" >
+                            <th className='border-0 text-left ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row" >
                               <snap className='heading0'> Order  </snap>
                             </th>
                             {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
-                            <td className='border-0 ' style={{ width: '0%', padding: '5x' }}>
+                            <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
                               {item.orderId}
                             </td>
                           </tr>
                           <tr >
-                            <th className='border-0 text-left ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row" >
+                            <th className='border-0 text-left ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row" >
                               <snap className='heading0'> Transaction Date  </snap>
                             </th>
                             {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
-                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                            <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
                               {item.transactionDate}
                             </td>
                           </tr>
                           <tr >
-                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
                               <snap className='heading0'>  Reference Id </snap>
                             </th>
                             {/* <td className='border-0 mb-2' style={{ width: '5%', }}></td> */}
-                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                            <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
                               {item.referenceId}
+                            </td>
+                          </tr>
+
+                          <tr  >
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
+                              <snap className='heading0'> Transaction Amount  </snap>
+                            </th>
+                            {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
+                            <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
+                              {item.transactionAmount}
                             </td>
                           </tr>
 
 
                           <tr  >
-                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
                               <snap className='heading0'> Pay Method  </snap>
                             </th>
                             {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
-                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                            <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
                               {item.payMethod}
                             </td>
                           </tr>
                           <tr >
-                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
                               <snap className='heading0'> Collectore Name  </snap>
                             </th>
                             {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
-                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                            <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
                               {item.collectorName}
                             </td>
                           </tr>
                           <tr >
-                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
                               <snap className='heading0'> Paid Month  </snap>
                             </th>
                             {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
-                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                            <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
                               {item.paidMonth}
                             </td>
                           </tr>
                           <tr >
-                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '5px' }} scope="row">
+                            <th className='border-0 ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row">
                               <snap className='heading0'>Status  </snap>
                             </th>
                             {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
-                            <td className='border-0 ' style={{ width: '0%', padding: '5px' }}>
+                            <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
                               {item.status}
                             </td>
                           </tr>
