@@ -27,16 +27,17 @@ const CardDetails = () => {
   return (
     <div className='back-penal'>
       <div className='main-container container-fluid container-fluid-44 m-auto'>
-      <Header title={'Card Details'} />
+        <Header title={'Card Details'} />
+        <NavSpeedDial />
         <div className='row'>
           <div className=' col-md-12 '>
             {/* <div className='d-flex  align-items-center ' style={{ height: '100vh' }}> */}
-              
-              <div style={{paddingTop:'70px'}}>
-                <Card >
-                  <CardHeader className='card-header ' title="Card Details" /> <Divider />
-                  <CardContent className='card-body'>
-                    {/* <Box >
+
+            <div style={{ paddingTop: '70px' }}>
+              <Card >
+                <CardHeader className='card-header ' title="Card Details" /> <Divider />
+                <CardContent className='card-body'>
+                  {/* <Box >
                       <div className='col-md-12 d-flex'>
                         <label className='col-md-3 '>Card No. :</label><Typography className='col-md-9'>{respObject.cardNo}</Typography>
                       </div>
@@ -53,7 +54,7 @@ const CardDetails = () => {
                         <label className='col-md-3'>Entity Type :</label><Typography className='col-md-9' >{respObject.cardType}</Typography>
                       </div>
                     </Box> */}
-                     <div className='table-responsive'>
+                  <div className='table-responsive'>
                     <table className="table table-one-iner mb-0">
 
                       <tbody>
@@ -63,7 +64,7 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                          {respObject.cardNo}
+                            {respObject.cardNo}
                           </td>
                         </tr>
                         <tr >
@@ -72,16 +73,16 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                          {respObject.name}
+                            {respObject.name}
                           </td>
                         </tr>
                         <tr >
-                          <th className='border-0 mb-0' style={{ width: '0%', textAlign: 'left',}} scope="row">
+                          <th className='border-0 mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row">
                             <snap className='heading0'>  Mobile No </snap>
                           </th>
                           {/* <td className='border-0 mb-2' style={{ width: '5%', }}></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                          {respObject.mobile}
+                            {respObject.mobile}
                           </td>
                         </tr>
 
@@ -92,26 +93,28 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                          {respObject.cardType}
+                            {respObject.cardType}
                           </td>
                         </tr>
-                       
+
                       </tbody>
                     </table>
                   </div>
-                  </CardContent>
-                </Card>
-              </div>
+                </CardContent>
+              </Card>
+            
+            </div>
+       
 
-             
             {/* </div> */}
           </div>
-          <NavSpeedDial/>
+
           {/* <Footer /> */}
         </div>
+
       </div>
-      </div>
-      );
+    </div>
+  );
 }
 
-      export default CardDetails
+export default CardDetails

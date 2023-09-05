@@ -8,11 +8,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import HistoryIcon from '@mui/icons-material/History';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import { useNavigate } from 'react-router-dom';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import './navSpeedDial.css'
 
 const actions = [
-  { icon: <HomeIcon />, name: 'Home',path:"/" },
-  { icon: <PaymentsIcon/>, name: 'Payment History',path:"/payment-history" },
-  { icon: <HistoryIcon />, name: 'Transaction History',path:"/transaction-history" },
+  { icon: <HomeIcon style={{color:'#24b903'}}/>, name: 'Home',path:"/" },
+  { icon: <PaymentsIcon style={{color:'#24b903'}}/>, name: 'Payment History',path:"/payment-history" },
+  { icon: <HistoryIcon  style={{color:'#24b903'}}/>, name: 'Transaction History',path:"/transaction-history" },
 ];
 
 export default function NavSpeedDial() {
@@ -27,12 +29,12 @@ export default function NavSpeedDial() {
   }
 
   return (
-    <Box sx={{width:'100%',zIndex:'9999999', transform: 'translateZ(0px)',position: 'fixed', bottom: 0, right: 0}}>
+    <Box sx={{width:'100%',zIndex:'9999999', transform: 'translateZ(0px)',position: 'fixed', bottom: 0, right: 0, }}>
       {/* <Backdrop open={open} /> */}
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
-        sx={{ position: 'absolute', bottom: 50, right: 18 }}
-        icon={<SpeedDialIcon />}
+        sx={{ position: 'absolute', bottom: 50, left: '59%',  }}
+        icon={<FormatListBulletedIcon />}
         onClose={handleClose}
         onOpen={handleOpen}
         open={open}

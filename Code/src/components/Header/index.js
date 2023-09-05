@@ -6,10 +6,10 @@ const Header = (props) => {
 
   return (
   
-            <div className='header d-flex' style={{width:'100%'}} >
+            <div className='header d-flex justify-content-between' >
               <Typography  sx={{ color: 'white', fontWeight: 'bold'}} id="tableTitle" >{props.title}</Typography>
              <div hidden={props.title==='Payment'}>
-              <NavThreeDot />
+              <NavThreeDot className='menu' />
               </div>
             </div>
       
