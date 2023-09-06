@@ -29,11 +29,12 @@ export default function NavSpeedDial() {
   }
 
   return (
-    <Box sx={{width:'100%',zIndex:'9999999', transform: 'translateZ(0px)',position: 'fixed', bottom: 0, right: 0, }}>
+    <Box sx={{width:'100%',zIndex:'9999999', transform: 'translateZ(0px)',position: 'fixed', bottom: 50, left: 200,flexGrow: 1 }}>
       {/* <Backdrop open={open} /> */}
+      
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
-        sx={{ position: 'absolute', bottom: 50, left: '59%',  }}
+        // sx={{  position: 'absolute', bottom: 50, right: 16  }}
         icon={<FormatListBulletedIcon />}
         onClose={handleClose}
         onOpen={handleOpen}
@@ -51,6 +52,7 @@ export default function NavSpeedDial() {
           />
         ))}
       </SpeedDial>
-    </Box>
+     
+     </Box>
   );
 }

@@ -28,7 +28,7 @@ const CardDetails = () => {
     <div className='back-penal'>
       <div className='main-container container-fluid container-fluid-44 m-auto'>
         <Header title={'Card Details'} />
-        <NavSpeedDial />
+       
         <div className='row'>
           <div className=' col-md-12 '>
             {/* <div className='d-flex  align-items-center ' style={{ height: '100vh' }}> */}
@@ -111,6 +111,7 @@ const CardDetails = () => {
 
           {/* <Footer /> */}
         </div>
+        <NavSpeedDial />
 
       </div>
     </div>
