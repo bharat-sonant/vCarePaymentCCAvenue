@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react'
-import Footer from '../../components/Footer'
-import Header from '../../components/Header'
+import React, { useEffect } from 'react';
+import Header from '../../components/Header';
 import { Box, Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 import { getCCAvenuePaymentTransactionHistory } from '../../services/transactionHistoryService';
 import { useState } from 'react';
 import { showAlert } from '../../services/commonService';
-import './transactionHistory.css'
-import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSpeedDial';
+import './transactionHistory.css';
 
 const TransactionHistory = () => {
   const [historyArray, setHistoryArray] = useState([])
@@ -69,7 +67,7 @@ const TransactionHistory = () => {
                         <tbody>
                           <tr >
                             <th className='border-0 text-left ' style={{ width: '0%', textAlign: 'left', padding: '2px 5px' }} scope="row" >
-                              <snap className='heading0'> Order  </snap>
+                              <snap className='heading0'> Order Id</snap>
                             </th>
                             {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
                             <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>

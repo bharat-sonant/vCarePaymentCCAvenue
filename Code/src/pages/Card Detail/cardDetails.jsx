@@ -35,7 +35,7 @@ const CardDetails = () => {
 
             <div style={{ paddingTop: '70px' }}>
               <Card >
-                <CardHeader className='card-header ' title="Card Details" /> <Divider />
+                <CardHeader className='card-header ' title={respObject.cardNo}/> <Divider />
                 <CardContent className='card-body'>
                   {/* <Box >
                       <div className='col-md-12 d-flex'>
@@ -58,13 +58,22 @@ const CardDetails = () => {
                     <table className="table table-one-iner mb-0">
 
                       <tbody>
-                        <tr >
+                        {/* <tr >
                           <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
                             <snap className='heading0'> Card No.  </snap>
                           </th>
-                          {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
+                    
                           <td className='border-0 ' style={{ width: '0%', }}>
                             {respObject.cardNo}
+                          </td>
+                        </tr> */}
+                        <tr >
+                          <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
+                            <snap className='heading0'> Name  </snap>
+                          </th>
+                          {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
+                          <td className='border-0 ' style={{ width: '0%', }}>
+                            {respObject.name}
                           </td>
                         </tr>
                         <tr >
@@ -73,7 +82,7 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                            {respObject.name}
+                            {respObject.address}
                           </td>
                         </tr>
                         <tr >

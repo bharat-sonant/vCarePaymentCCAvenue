@@ -24,13 +24,16 @@ export const saveCCAvenuePaymentTransactionHistory=async(data)=>{
     const date=data.transactionDateTime.split(' ')[0];
     const year=dayjs(date).format('YYYY');
     const month=dayjs(date).format('MMMM');
-    let path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo+"/"+year+"/"+month+"/"+date+"/"
-    const resp=await getData(path+"lastKey");
-    const newKey=resp!==null?Number(resp)+1:1;
+    let path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo+"/"+year+"/"+month+"/"+date+"/";
+    let newKey=1;
+    const resp=await getData(path);
+    if(resp!=null){
+        let keyArray=Object.keys(resp);
+        newKey = Math.max(...keyArray)+1;
+    }
     data.cardType=localStorage.getItem('cardType');
     data.payMethod='CC Avenue Payment'
     await saveData(path+newKey,data);
-    await saveData(path, {lastKey:newKey})
 }
 export const savePaymentCollectionHistory=async(yearMonth)=>{
 
@@ -47,9 +50,12 @@ export const saveCCAvenuePaymentCollectorHistory=async(data) => {
         const date=data.transactionDateTime.split(' ')[0];
         const id=data.paymentCollectionById;
         const path="PaymentCollectionInfo/PaymentCollectorHistory/"+id+"/"+date+"/";
-        const resp=await getData(path+"lastKey");
-        const newKey=resp!==null?Number(resp)+1:1;
-
+        let newKey=1;
+        const resp=await getData(path);
+        if(resp!=null){
+            let keyArray=Object.keys(resp);
+            newKey = Math.max(...keyArray)+1;
+        }
         let obj={
             cardNo:localStorage.getItem('cardNo'),
             merchantTransactionId:data.merchantTransactionId,
@@ -57,8 +63,6 @@ export const saveCCAvenuePaymentCollectorHistory=async(data) => {
             transactionAmount:data.transactionAmount
         }
         await saveData(path+newKey,obj);
-        await saveData(path, {lastKey:newKey})
-       
 }
 
 export const deleteCCAvenuePaymentRequestHistory=async()=>{

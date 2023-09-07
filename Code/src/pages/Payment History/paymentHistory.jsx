@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import './paymentHistory.css'
-import Footer from '../../components/Footer';
+import './paymentHistory.css';
 import { Box, Typography,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Toolbar,Paper, Checkbox, Button} from '@mui/material'
 import { useEffect } from 'react';
 import { getPaymentCollectionHistory, saveCCAvenuePaymentRequestHistory } from '../../services/paymentHistoryService';
 import { showAlert } from '../../services/commonService';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
-// import Button from '@mui/material/Button';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSpeedDial';
 
 
 
@@ -80,7 +77,7 @@ const PaymentHistory=()=> {
         <TableHead  style={{position:'sticky', zIndex:99}}>
           <TableRow>
             <TableCell padding="checkbox" variant='head'>
-              <Checkbox  sx={{color: '#6200ED','&.Mui-checked': {color:' #6c63ff'}}} onClick={handleSelectAllClick}
+              <Checkbox  sx={{color: '#24B903','&.Mui-checked': {color:'#24B903'}}} onClick={handleSelectAllClick}
                checked={selectedRows.length===checkboxes.length} hidden={checkboxes.length===0}
                /> </TableCell>
             <TableCell className='table-header'  variant='head'>Month-Year</TableCell>
@@ -93,7 +90,7 @@ const PaymentHistory=()=> {
             <TableRow key={`${detail.month}-${detail.year}`}>
               <TableCell padding="checkbox"  variant='head'>
                 <Checkbox 
-                sx={{color: '#6200ED','&.Mui-checked': {color:' #6200ED'}}}
+                sx={{color: '#24B903','&.Mui-checked': {color:'#24B903'}}}
                   checked={selectedRows.includes(`${detail.month}-${detail.year}`)}
                   onChange={event => handleRowSelection(event, `${detail.month}-${detail.year}`,detail.amount)}
                   hidden={detail.status!=='Pending'} 
@@ -109,7 +106,7 @@ const PaymentHistory=()=> {
     </TableContainer>
     <Toolbar sx={{ pl: { sm: 2 },pr: { xs: 1, sm: 1 }}}>
         <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-          Total Amount: <CurrencyRupeeIcon style={{fontSize:'18px'}}/> {totalPayment}
+          Payable Amount: <CurrencyRupeeIcon style={{fontSize:'18px'}}/> {totalPayment}
         </Typography>
       
     </Toolbar>
@@ -179,7 +176,7 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
   }
   return (
     <div className='d-flex align-items-center justify-content-center' >
-                  <Button sx={{backgroundColor:'#24B903'}} onClick={savePaymentHistory} variant="contained" size='large'  className='btn' hidden={hidden}>Pay Now</Button>
+                  <Button style={{backgroundColor:'#24B903'}} onClick={savePaymentHistory} variant="contained" size='large'  className='btn' hidden={hidden}>Pay Now</Button>
     </div>
   );
 }
