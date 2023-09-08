@@ -1,20 +1,21 @@
 import React,{useState} from 'react';
 import Box from '@mui/material/Box';
-import Backdrop from '@mui/material/Backdrop';
 import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import HomeIcon from '@mui/icons-material/Home';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
 import HistoryIcon from '@mui/icons-material/History';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import { useNavigate } from 'react-router-dom';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import './navSpeedDial.css'
 
 const actions = [
-  { icon: <HomeIcon style={{color:'#24b903'}}/>, name: 'Home',path:"/" },
+  { icon: <FiberNewIcon style={{color:'#24b903'}}/>, name: 'New Card',path:"/" },
+  { icon: <ContactsIcon  style={{color:'#24b903'}}/>, name: 'Card Detail',path:"/cardDetail" },
   { icon: <PaymentsIcon style={{color:'#24b903'}}/>, name: 'Payment History',path:"/payment-history" },
   { icon: <HistoryIcon  style={{color:'#24b903'}}/>, name: 'Transaction History',path:"/transaction-history" },
+  
 ];
 
 export default function NavSpeedDial() {

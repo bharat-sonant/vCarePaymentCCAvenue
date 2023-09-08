@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '../../components/Header';
-import { Box, Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
+import { Box, Card, CardContent} from '@mui/material';
 import { getCCAvenuePaymentTransactionHistory } from '../../services/transactionHistoryService';
 import { useState } from 'react';
 import { showAlert } from '../../services/commonService';

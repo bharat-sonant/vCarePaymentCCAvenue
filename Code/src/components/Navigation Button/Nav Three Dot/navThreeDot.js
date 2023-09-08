@@ -3,15 +3,18 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import HomeIcon from '@mui/icons-material/Home';
 import HistoryIcon from '@mui/icons-material/History';
 import PaymentsIcon from '@mui/icons-material/Payments';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const actions = [
-    { icon: <HomeIcon />, name: 'Home',path:"/" },
+    { icon: <FiberNewIcon />, name: 'New Card',path:"/" },
+    { icon: <ContactsIcon />, name: 'Card Detail',path:"/cardDetail" },
     { icon: <PaymentsIcon/>, name: 'Payment History',path:"/payment-history" },
     { icon: <HistoryIcon />, name: 'Transaction History',path:"/transaction-history" },
+    
   ];
 
 

@@ -3,15 +3,12 @@ import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
-// import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-import { showAlert } from '../../services/commonService';
 import { getCardWardMapping } from '../../services/formService';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
-import { colors } from '@mui/material';
 
 
 const DashboardForm = () => {
@@ -35,8 +32,9 @@ const DashboardForm = () => {
         setError(true);
       }
       else {
-        localStorage.setItem("cardNo", "MNZ" + cardNo)
-        navigate('/cardDetail/' + data.ward + "/" + data.line + "/" + cardNo)
+        localStorage.setItem("cardNo", "MNZ" + cardNo);
+        localStorage.setItem("cardDetailParams",JSON.stringify({cardNo:cardNo,ward:data.ward,lineNo:data.line}));
+        navigate('/cardDetail')
       }
     })
 

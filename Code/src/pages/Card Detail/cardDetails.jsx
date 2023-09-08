@@ -1,9 +1,6 @@
-import { Box, Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
-import { get } from 'jquery';
+import {Card, CardContent, CardHeader, Divider} from '@mui/material';
 import React, { useEffect } from 'react'
 import { getCardDetail } from '../../services/cardDetailService';
-import { useParams } from 'react-router-dom';
-import Footer from '../../components/Footer';
 import { useState } from 'react';
 import Header from '../../components/Header';
 import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSpeedDial';
@@ -11,16 +8,17 @@ import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSp
 
 
 const CardDetails = () => {
-  const { ward, line, card } = useParams();
   const [respObject, setRespObject] = useState({})
   useEffect(() => {
-    if (ward !== undefined || line !== undefined || card !== undefined) {
-      getCardDetail(ward, line, card).then(data => {
+    const cardDetailParams=JSON.parse(localStorage.getItem('cardDetailParams'));
+    if (cardDetailParams.ward !== undefined || cardDetailParams.lineNo !== undefined || cardDetailParams.cardNo !== undefined) {
+      getCardDetail(cardDetailParams.ward, cardDetailParams.lineNo, cardDetailParams.cardNo).then(data => {
         if (data !== null) {
           setRespObject(data);
         }
       });
     }
+    
   }, [])
 
 
