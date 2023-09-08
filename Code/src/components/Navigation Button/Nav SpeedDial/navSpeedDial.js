@@ -12,7 +12,7 @@ import './navSpeedDial.css'
 
 const actions = [
   { icon: <FiberNewIcon style={{color:'#24b903'}}/>, name: 'New Card',path:"/" },
-  { icon: <ContactsIcon  style={{color:'#24b903'}}/>, name: 'Card Detail',path:"/cardDetail" },
+  { icon: <ContactsIcon  style={{color:'#24b903'}}/>, name: 'Card Details',path:"/cardDetail" },
   { icon: <PaymentsIcon style={{color:'#24b903'}}/>, name: 'Payment History',path:"/payment-history" },
   { icon: <HistoryIcon  style={{color:'#24b903'}}/>, name: 'Transaction History',path:"/transaction-history" },
   

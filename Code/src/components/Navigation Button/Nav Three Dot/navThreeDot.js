@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const actions = [
     { icon: <FiberNewIcon />, name: 'New Card',path:"/" },
-    { icon: <ContactsIcon />, name: 'Card Detail',path:"/cardDetail" },
+    { icon: <ContactsIcon />, name: 'Card Details',path:"/cardDetail" },
     { icon: <PaymentsIcon/>, name: 'Payment History',path:"/payment-history" },
     { icon: <HistoryIcon />, name: 'Transaction History',path:"/transaction-history" },
     
