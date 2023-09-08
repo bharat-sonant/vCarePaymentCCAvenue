@@ -19,7 +19,7 @@ const TransactionHistory = () => {
         setHistoryArray([...list])
       }
       else {
-        showAlert('NO history found..', 'error')
+        showAlert('No history found..', 'error')
       }
     })
   }
