@@ -310,7 +310,14 @@ export function showAlertMobile(message, type) {
 
   if (type == 'error') {
     const alertContainer = document.createElement('div');
-    alertContainer.className = 'alert-container-mobile'
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 768) {
+      alertContainer.className = 'alert-container-mobile'
+    } else {
+     
+      alertContainer.className = 'alert-container'
+    }
+    // alertContainer.className = 'alert-container-mobile'
     alertContainer.innerHTML = message
 
     document.body.appendChild(alertContainer);
@@ -325,7 +332,14 @@ export function showAlertMobile(message, type) {
   else {
 
     const successContainer = document.createElement('div');
-    successContainer.className = 'success-container-mobile'
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 768) {
+      successContainer.className = 'success-container-mobile'
+    } else {
+     
+      successContainer.className = 'success-container'
+    }
+    // successContainer.className = 'success-container-mobile'
     successContainer.innerHTML = message
 
     document.body.appendChild(successContainer);

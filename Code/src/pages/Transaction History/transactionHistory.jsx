@@ -3,7 +3,7 @@ import Header from '../../components/Header';
 import { Box, Card, CardContent} from '@mui/material';
 import { getCCAvenuePaymentTransactionHistory } from '../../services/transactionHistoryService';
 import { useState } from 'react';
-import { showAlert } from '../../services/commonService';
+import { showAlertMobile } from '../../services/commonService';
 import './transactionHistory.css';
 
 const TransactionHistory = () => {
@@ -19,7 +19,7 @@ const TransactionHistory = () => {
         setHistoryArray([...list])
       }
       else {
-        showAlert('No history found..', 'error')
+        showAlertMobile('No history found..', 'error')
       }
     })
   }

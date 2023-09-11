@@ -3,7 +3,7 @@ import './paymentHistory.css';
 import { Box, Typography,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Toolbar,Paper, Checkbox, Button} from '@mui/material'
 import { useEffect } from 'react';
 import { getPaymentCollectionHistory, saveCCAvenuePaymentRequestHistory } from '../../services/paymentHistoryService';
-import { showAlert } from '../../services/commonService';
+import {  showAlertMobile } from '../../services/commonService';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
@@ -25,7 +25,7 @@ const PaymentHistory=()=> {
         setCheckboxes(list.filter(item=>item.status==='Pending'))
       }
       else{
-        showAlert('Payment history not found..','error')
+        showAlertMobile('Payment history not found..','error')
       }
     });
     
