@@ -6,6 +6,7 @@ import PaymentHistory from '../Payment History/paymentHistory.jsx';
 import TransactionHistory from '../Transaction History/transactionHistory.jsx';
 import PaymentCancel from '../Payment Status Page/paymentCancel.jsx';
 import PaymentSuccess from '../Payment Status Page/paymentSuccess.jsx';
+import PaymentRequest from '../Payment/paymentRequest.jsx';
 
 
 const RouterComponent=() => {
@@ -20,6 +21,7 @@ const RouterComponent=() => {
         <Route path='/transaction-history' element={<TransactionHistory/>} /> 
         <Route path='/payment-cancel' element={<PaymentCancel/>} /> 
         <Route path='/payment-success' element={<PaymentSuccess/>} /> 
+        <Route path='/payment-request' element={<PaymentRequest/>} /> 
 
         {/* <Route path='/dashboard' element={<Dashbord />} />
         <Route path='/:userId/:city' element={<Topbar />} />
