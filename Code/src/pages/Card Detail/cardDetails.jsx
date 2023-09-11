@@ -1,6 +1,6 @@
 import {Card, CardContent, CardHeader, Divider} from '@mui/material';
 import React, { useEffect } from 'react'
-import { getCardDetail } from '../../services/cardDetailService';
+import { getCardDetail, getHouseTypeJson } from '../../services/cardDetailService';
 import { useState } from 'react';
 import Header from '../../components/Header';
 import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSpeedDial';
@@ -12,9 +12,15 @@ const CardDetails = () => {
   useEffect(() => {
     const cardDetailParams=JSON.parse(localStorage.getItem('cardDetailParams'));
     if (cardDetailParams.ward !== undefined || cardDetailParams.lineNo !== undefined || cardDetailParams.cardNo !== undefined) {
-      getCardDetail(cardDetailParams.ward, cardDetailParams.lineNo, cardDetailParams.cardNo).then(data => {
-        if (data !== null) {
-          setRespObject(data);
+
+      getHouseTypeJson().then(houseTypeList=>{
+        if(houseTypeList!==null){
+          getCardDetail(cardDetailParams.ward, cardDetailParams.lineNo, cardDetailParams.cardNo).then(data => {
+            if (data !== null) {
+              data.houseTypeName=houseTypeList[Number(data.houseType)].name;
+              setRespObject(data);
+            }
+          });
         }
       });
     }
@@ -100,7 +106,7 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                            {respObject.cardType}
+                            {respObject.houseTypeName}
                           </td>
                         </tr>
 

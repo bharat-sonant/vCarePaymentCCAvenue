@@ -279,7 +279,7 @@ export const getColor=(index)=>{
 }
 
 export const getStoragePath=()=>{ 
-    // return "https://firebasestorage.googleapis.com/v0/b/wevoisdev-94a32.appspot.com/o/Dehradun%2F"
+    return "https://firebasestorage.googleapis.com/v0/b/dtdnavigator.appspot.com/o/Jaipur-Malviyanagar%2F"
 }
 
 export const getDistanceFromLatLonInKm=(lat1, lon1, lat2, lon2)=> {
@@ -305,3 +305,39 @@ export const generateRandomString=(length)=>{
   }
   return result;
 }
+export function showAlertMobile(message, type) {
+
+
+  if (type == 'error') {
+    const alertContainer = document.createElement('div');
+    alertContainer.className = 'alert-container-mobile'
+    alertContainer.innerHTML = message
+
+    document.body.appendChild(alertContainer);
+
+    setTimeout(function () {
+      alertContainer.classList.add("show");
+    }, 100);
+    setTimeout(function () {
+      alertContainer.remove();
+    }, 3000);
+  }
+  else {
+
+    const successContainer = document.createElement('div');
+    successContainer.className = 'success-container-mobile'
+    successContainer.innerHTML = message
+
+    document.body.appendChild(successContainer);
+
+    setTimeout(function () {
+      successContainer.classList.add("show");
+    }, 100);
+    setTimeout(function () {
+      successContainer.remove();
+    }, 3000);
+  }
+
+  
+
+} 
