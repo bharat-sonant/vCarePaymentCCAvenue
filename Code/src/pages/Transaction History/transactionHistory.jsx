@@ -99,7 +99,7 @@ const TransactionHistory = () => {
                             </th>
                             {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
                             <td className='border-0 ' style={{ width: '0%', padding: '2px 5px' }}>
-                              {item.transactionAmount.toFixed(2)}
+                              {Number(item.transactionAmount).toFixed(2)}
                             </td>
                           </tr>
 
