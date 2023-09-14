@@ -115,7 +115,7 @@
     padding-left: 65px;
     align-items: center;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    width: 33%;
+    /* width: 33%;/ */
     height: 50px;
     overflow: hidden;
     white-space: nowrap;
@@ -143,7 +143,7 @@
     padding-left: 65px;
     align-items: center;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    width: 33%;
+    /* width: 33%; */
     height: 50px;
     overflow: hidden;
     white-space: nowrap;
@@ -162,7 +162,7 @@
   .alert-container-mobile {
     position: fixed;
     bottom: 10px;
-    /* width: 100%; */
+    width: 100%;
     right: 10px;
     background-color: #ff5050;
     border: 1px solid #ddd; 
@@ -172,7 +172,7 @@
     padding-left: 25px;
     align-items: center;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    width: 55%;
+    /* width: 55%; */
     height: 50px;
     overflow: hidden;
     white-space: nowrap;
@@ -186,7 +186,7 @@
   .success-container-mobile {
     position: fixed;
     bottom: 10px;
-    /* width: 100%; */
+    width: 100%;
     right: 10px;
     background-color: #75b8e8 !important;
      border: 1px solid #ddd; 
@@ -196,7 +196,7 @@
     padding-left: 25px;
     align-items: center;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    width: 55%;
+    /* width: 55%; */
     height: 50px;
     overflow: hidden;
     white-space: nowrap;
