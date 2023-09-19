@@ -68,27 +68,27 @@ const PaymentHistory=()=> {
     <div className='main-container container-fluid container-fluid-44 m-auto'>
      <Header title={'Payment History'}/>
      <div className='row'>
-          <div className=' col-md-12 mb-5 '>
+          <div className=' col-md-12  '>
     <Box  sx={{ width: '100%', mb: 3 , pt:8}} >
       <Paper >
       <EnhancedTableToolbar numSelected={selectedRows.length} />
     <TableContainer  >
       <Table stickyHeader>
-        <TableHead  style={{position:'sticky', zIndex:99}}>
-          <TableRow>
-            <TableCell padding="checkbox" variant='head'>
+        <TableHead  style={{position:'sticky', zIndex:99 ,}}>
+          <TableRow >
+            <TableCell padding="checkbox" variant='head'className='text-center'  >
               <Checkbox  sx={{color: '#24B903','&.Mui-checked': {color:'#24B903'}}} onClick={handleSelectAllClick}
                checked={selectedRows.length===checkboxes.length} hidden={checkboxes.length===0}
                /> </TableCell>
-            <TableCell className='table-header'  variant='head'>Month-Year</TableCell>
-            <TableCell  variant='head'>Charges</TableCell>
-            <TableCell  variant='head'>Status</TableCell>
+            <TableCell className='table-header text-center '  variant='head'>Month-Year</TableCell>
+            <TableCell className='text-center' variant='head' >Charges</TableCell>
+            <TableCell className='text-center' variant='head'  >Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody className='table-body'>
           {paymentList.map(detail=> (
             <TableRow key={`${detail.month}-${detail.year}`}>
-              <TableCell padding="checkbox"  variant='head'>
+              <TableCell padding="checkbox"  variant='head'className='text-center'>
                 <Checkbox 
                 sx={{color: '#24B903','&.Mui-checked': {color:'#24B903'}}}
                   checked={selectedRows.includes(`${detail.month}-${detail.year}`)}
@@ -96,9 +96,9 @@ const PaymentHistory=()=> {
                   hidden={detail.status!=='Pending'} 
                 />
               </TableCell>  
-              <TableCell  variant='body'>{detail.month}-{detail.year}</TableCell>
-              <TableCell  variant='body'>{detail.amount}</TableCell>
-              <TableCell  variant='body'>{detail.status}</TableCell>
+              <TableCell  className='text-center' variant='body'>{detail.month}-{detail.year}</TableCell>
+              <TableCell  className='text-center' variant='body'>{detail.amount}</TableCell>
+              <TableCell className='text-center' variant='body'>{detail.status}</TableCell>
             </TableRow>
           ))}
         </TableBody>
