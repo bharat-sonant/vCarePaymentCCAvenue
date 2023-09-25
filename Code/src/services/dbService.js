@@ -1,5 +1,5 @@
 import {ref,get,update,set,remove} from 'firebase/database';
-import {database} from '../Firebase';
+import {database} from '../Firebase.jsx';
 
 export const getData=(path) => {
     

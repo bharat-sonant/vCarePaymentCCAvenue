@@ -9,7 +9,7 @@ const Header = (props) => {
             <div className='header d-flex justify-content-between' >
               <Typography  sx={{ color: 'white', fontWeight: 'bold'}} id="tableTitle" >{props.title}</Typography>
              <div hidden={props.title==='Payment'}>
-              <NavThreeDot className='menu' />
+              {props.hide!==true && <NavThreeDot className='menu' />}
               </div>
             </div>
       

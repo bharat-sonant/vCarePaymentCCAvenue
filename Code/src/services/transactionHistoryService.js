@@ -20,7 +20,7 @@ export const getCCAvenuePaymentTransactionHistory=() => {
                        keyArray.forEach(key=>{
                         if(Number(key)){
                             let resp=response[year][month][date][key];
-                            list.push({key:key,orderId:resp.merchantTransactionId,transactionDate:date,transactionAmount:resp.transactionAmount,payMethod:resp.payMethod,collectorName:resp.paymentCollectionByName,paidMonth:resp.monthYear,status:'Paid',referenceId:'######'
+                            list.push({key:key,orderId:resp.merchantTransactionId,transactionDate:date,transactionAmount:resp.transactionAmount,payMethod:resp.payMethod,collectorName:resp.paymentCollectionByName,paidMonth:resp.monthYear,status:'Paid',referenceId:resp.retrievalReferenceNo
                             });
                          }
                        })

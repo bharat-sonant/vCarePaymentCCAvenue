@@ -19,7 +19,7 @@ export const getCCAvenuePaymentRequestHistory=async() => {
         });
     
 }
-export const saveCCAvenuePaymentTransactionHistory=async(data)=>{
+export const saveCCAvenuePaymentTransactionHistory=async(data,params)=>{
     const cardNo=localStorage.getItem('cardNo');
     const date=data.transactionDateTime.split(' ')[0];
     const year=dayjs(date).format('YYYY');
@@ -31,8 +31,16 @@ export const saveCCAvenuePaymentTransactionHistory=async(data)=>{
         let keyArray=Object.keys(resp);
         newKey = Math.max(...keyArray)+1;
     }
+    let dateFormate =params.trans_date.split(" ")[0];
+    dateFormate=dateFormate.split("/")[2]+"-"+dateFormate.split("/")[1]+"-"+dateFormate.split("/")[0]
+    const transactionDate=dateFormate+" "+params.trans_date.split(" ")[1];
+
     data.cardType=localStorage.getItem('cardType');
     data.payMethod='CC Avenue Payment'
+    data.retrievalReferenceNo=params.bank_ref_no;
+    data.trackingId=params.tracking_id;
+    data.transactionDateTime=transactionDate
+
     await saveData(path+newKey,data);
 }
 export const savePaymentCollectionHistory=async(yearMonth)=>{
@@ -46,7 +54,7 @@ export const savePaymentCollectionHistory=async(yearMonth)=>{
     saveData(path,{status:'Paid'});
    })
 }
-export const saveCCAvenuePaymentCollectorHistory=async(data) => {
+export const saveCCAvenuePaymentCollectorHistory=async(data,params) => {
         const date=data.transactionDateTime.split(' ')[0];
         const id=data.paymentCollectionById;
         const path="PaymentCollectionInfo/PaymentCollectorHistory/"+id+"/"+date+"/";
@@ -60,11 +68,12 @@ export const saveCCAvenuePaymentCollectorHistory=async(data) => {
             cardNo:localStorage.getItem('cardNo'),
             merchantTransactionId:data.merchantTransactionId,
             payMethod:'CC Avenue Payment',
-            transactionAmount:data.transactionAmount
+            transactionAmount:data.transactionAmount,
+            retrievalReferenceNo:params.bank_ref_no
+            
         }
         await saveData(path+newKey,obj);
 }
-
 export const deleteCCAvenuePaymentRequestHistory=async()=>{
     RemoveData(localStorage.getItem('removePath'));
  }

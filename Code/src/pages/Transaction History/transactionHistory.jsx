@@ -31,7 +31,7 @@ const TransactionHistory = () => {
         <div >
           <Box className="d-grid " sx={{ pt: 8, pb: 10, gridTemplateColumns: { xs: '100%', sm: '100%', md: '50% 50%', lg: '100% ' } }}>
             {historyArray.map(item => (
-              <div className='d-flex justify-content-center p-3' key={item.key} >
+              <div className='d-flex justify-content-center p-3' key={item.orderId} >
                 <Card className='card'>
                   {/* <CardHeader className='card-header ' title="Card Details" /> <Divider/> */}
                   <CardContent className='card-body '>

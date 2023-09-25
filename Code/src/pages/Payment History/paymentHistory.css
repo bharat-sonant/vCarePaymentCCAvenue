@@ -31,22 +31,3 @@ button:focus:not(:focus-visible){
   padding: 8px !important;
 }
 
-.css-1ex1afd-MuiTableCell-root {
-  padding: 9px !important;
-}
-.css-bb05id-MuiButtonBase-root-MuiCheckbox-root{
-  padding: 0px !important;
-}
-
-@media (min-width:500px) {
-  .css-rorn0c-MuiTableContainer-root{
-    overflow: scroll !important;
-    height: calc(100vh - 300px) !important ;
-  }
-}
-@media (max-width:500px) {
-  .css-rorn0c-MuiTableContainer-root{
-    overflow: scroll !important;
-    height: calc(100vh - 290px) ;
-  }
-}

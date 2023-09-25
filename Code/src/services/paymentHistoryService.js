@@ -44,16 +44,20 @@ export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
         let keyArray=Object.keys(response);
          newKey= Math.max(...keyArray)+1;
       }
+      const merchantTransactionId=cardNo+generateRandomString(4);
       let dataObj={
-        merchantTransactionId:cardNo+generateRandomString(4),
+        merchantTransactionId:merchantTransactionId,
         monthYear:monthYear.toString(),
         transactionAmount:amount,
         transactionDateTime:dayjs().format('YYYY-MM-DD HH:mm:ss'),
         paymentCollectionById:'100',
         paymentCollectionByName:'Self'
       }
-    await saveData(path+"/"+newKey,dataObj)
-    localStorage.setItem('removePath',path+"/"+newKey)
+      
+    await saveData(path+"/"+newKey,dataObj);
+    localStorage.setItem('removePath',path+"/"+newKey);
+    localStorage.setItem('transactionId',merchantTransactionId);
+    localStorage.setItem('transactionAmount',amount)
     
     
   }
