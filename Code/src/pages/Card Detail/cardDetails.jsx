@@ -1,4 +1,4 @@
-import {Card, CardContent, CardHeader, Divider} from '@mui/material';
+import {Box, Card, CardContent, CardHeader, Divider, Skeleton} from '@mui/material';
 import React, { useEffect } from 'react'
 import { getCardDetail, getHouseTypeJson } from '../../services/cardDetailService';
 import { useState } from 'react';
@@ -36,10 +36,9 @@ const CardDetails = () => {
         <div className='row'>
           <div className=' col-md-12 '>
             {/* <div className='d-flex  align-items-center ' style={{ height: '100vh' }}> */}
-
             <div style={{ paddingTop: '70px' }}>
               <Card >
-                <CardHeader className='card-header ' title={respObject.cardNo}/> <Divider />
+                <CardHeader className='card-header ' title={respObject.cardNo===undefined?<Skeleton  variant='rounded' height={'22px'} width={'100px'} />:respObject.cardNo}/><Divider />
                 <CardContent className='card-body'>
                   {/* <Box >
                       <div className='col-md-12 d-flex'>
@@ -77,7 +76,7 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                            {respObject.name}
+                            {respObject.name}{respObject.name===undefined && <Skeleton  variant='rounded' height={'15px'} width={'200px'} />}
                           </td>
                         </tr>
                         <tr >
@@ -86,7 +85,7 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-3' style={{ width: '5%', }} ></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                            {respObject.address}
+                            {respObject.address}{respObject.address===undefined && <Skeleton  variant='rounded' height={'15px'} width={'200px'} />}
                           </td>
                         </tr>
                         <tr >
@@ -95,7 +94,7 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-2' style={{ width: '5%', }}></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                            {respObject.mobile}
+                            {respObject.mobile}{respObject.mobile===undefined && <Skeleton  variant='rounded' height={'15px'} width={'200px'} />}
                           </td>
                         </tr>
 
@@ -106,7 +105,7 @@ const CardDetails = () => {
                           </th>
                           {/* <td className='border-0 mb-2' style={{ width: '5%', }} ></td> */}
                           <td className='border-0 ' style={{ width: '0%', }}>
-                            {respObject.houseTypeName}
+                            {respObject.houseTypeName}{respObject.houseTypeName===undefined && <Skeleton  variant='rounded' height={'15px'} width={'200px'}  />}
                           </td>
                         </tr>
 
@@ -115,7 +114,6 @@ const CardDetails = () => {
                   </div>
                 </CardContent>
               </Card>
-            
             </div>
        
 

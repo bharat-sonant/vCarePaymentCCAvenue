@@ -9,7 +9,8 @@ export const getCardDetail=(ward,line,card) => {
         if(response!==null){
           localStorage.setItem('name',response.name);
           localStorage.setItem('cardType',response.cardType);
-            resolve(response)
+          localStorage.setItem('houseTypeId',response.houseType);
+          resolve(response)
         }
         else{
             resolve (null)
