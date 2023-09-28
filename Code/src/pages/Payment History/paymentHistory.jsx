@@ -87,7 +87,7 @@ const PaymentHistory=()=> {
         </TableHead>
         <TableBody className='table-body'>
           {paymentList.map(detail=> (
-            <TableRow key={`${detail.month}-${detail.year}`}>
+            <TableRow key={`${detail.month}-${detail.year}`} sx={{height:'50px'}}>
               <TableCell padding="checkbox"  variant='head'>
                 <Checkbox 
                 sx={{color: '#24B903','&.Mui-checked': {color:'#24B903'}}}
