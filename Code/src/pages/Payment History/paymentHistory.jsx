@@ -68,7 +68,7 @@ const PaymentHistory=()=> {
     <div className='main-container container-fluid container-fluid-44 m-auto'>
      <Header title={'Payment History'}/>
      <div className='row'>
-          <div className=' col-md-12 mb-5 '>
+          <div className=' col-md-12 mb-0 '>
     <Box  sx={{ width: '100%', mb: 3 , pt:8}} >
       <Paper >
       <EnhancedTableToolbar numSelected={selectedRows.length} />
@@ -114,7 +114,7 @@ const PaymentHistory=()=> {
     </Paper>
 
     </Box>
-    <PaymentButton transactionAmount={totalPayment} monthYear={selectedRows} hidden={hidden}/>
+    <PaymentButton className='mb-0' transactionAmount={totalPayment} monthYear={selectedRows} hidden={hidden}/>
     {/* <Button  className='btn css-sghohy-MuiButtonBase-root-MuiButton-root ' >Pay Now </Button> */}
    
   {/* <Footer /> */}
