@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { getData, saveData } from "./dbService";
 import { generateRandomString } from "./commonService";
+import { CurrencyBitcoinTwoTone } from "@mui/icons-material";
 
 
 export const getPaymentCollectionHistory=() => {
@@ -10,7 +11,8 @@ export const getPaymentCollectionHistory=() => {
       getData(path).then(async(response) => {
         let list=[]
         if(response!==null){
-          const currentMonth = dayjs();
+          const currentMonth = dayjs().subtract(1, 'month');
+          const currentTimeStamp=currentMonth.valueOf();
           const startMonth = dayjs('2022-11-01'); 
           let referenceYearMonthArray=[];
           let currentDate = startMonth;
@@ -28,9 +30,12 @@ export const getPaymentCollectionHistory=() => {
                 const monthArray=Object.keys(response[year]);
                 monthArray.forEach(month=>{
                    const timeStamp=dayjs(`${year}-${month}`).valueOf();
+                   if(timeStamp<=currentTimeStamp){
                     let resp=response[year][month];
                     list.push({year:year,month:month,amount:resp.amount,status:resp.status,timeStamp:timeStamp});
                     referenceYearMonthArray=referenceYearMonthArray.filter(item=>item!==year+"/"+month)
+                   }
+                   
                 })
                }
             });
@@ -49,7 +54,7 @@ export const getPaymentCollectionHistory=() => {
         }
         else{
             const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount");
-            const currentMonth = dayjs();
+            const currentMonth =  dayjs().subtract(1, 'month');
             const startMonth = dayjs('2022-11-01'); 
           
             let currentDate = startMonth;
@@ -99,3 +104,44 @@ export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
     
   }
   
+export const getNearstPaidMonth=async(paymentList) => {
+  let list=[]
+  const cardNo=localStorage.getItem('cardNo');
+  return new Promise(async(resolve) => {
+    let lastPaidMonthDetail = paymentList.find(item=>item.timeStamp===(Math.max(...paymentList.filter(payment =>payment.status === 'Paid').map(payment =>payment.timeStamp))));
+    let lastPaidDate="";
+    let nextTillDate="";
+    let amount="";
+
+    if(lastPaidMonthDetail!==undefined){
+       lastPaidDate=dayjs(`${Number(lastPaidMonthDetail.year)}-${lastPaidMonthDetail.month}`).add(1, 'month');
+       nextTillDate=dayjs(`${Number(lastPaidMonthDetail.year)+1}-${lastPaidMonthDetail.month}`);
+       amount=lastPaidMonthDetail.amount;
+    }
+    else{
+      lastPaidDate=dayjs(`${Number(paymentList[0].year)}-${paymentList[0].month}`);
+      nextTillDate=dayjs(`${Number(paymentList[0].year)+1}-${paymentList[0].month}`).subtract(1, 'month');
+      amount=paymentList[0].amount;
+    }
+    
+    while (lastPaidDate.isBefore(nextTillDate.endOf('month'))) {
+      const year = lastPaidDate.format('YYYY');
+      const monthName = lastPaidDate.format('MMM');
+      let obj={amount:amount,status:'Pending'}
+      const timeStamp=dayjs(`${year}-${monthName}`).valueOf();
+      const detail=paymentList.find(payment=>payment.month===monthName && payment.year===year)
+      if(detail===undefined){
+      await saveData("PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo+"/"+year+"/"+monthName,obj);
+      }
+      list.push({year:year,month:monthName,amount:amount,status:'Pending',timeStamp:timeStamp});
+    
+      lastPaidDate = lastPaidDate.add(1, 'month');
+    }
+    resolve (list)
+    
+  })
+    
+    
+ 
+    
+}
