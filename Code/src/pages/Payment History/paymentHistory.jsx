@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './paymentHistory.css';
-import { Box, Typography,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Toolbar,Paper, Checkbox, Button,Radio,RadioGroup,FormControlLabel,FormControl, Card, CardContent} from '@mui/material'
+import { Box, Typography,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Toolbar,Paper, Checkbox, Button,Radio,RadioGroup,FormControlLabel} from '@mui/material'
 import { useEffect } from 'react';
-import { getNearstPaidMonth, getPaymentCollectionHistory, saveCCAvenuePaymentRequestHistory } from '../../services/paymentHistoryService';
+import { getPaymentCollectionHistory, getYearlyPaymentList, saveCCAvenuePaymentRequestHistory } from '../../services/paymentHistoryService';
 import {  showAlertMobile } from '../../services/commonService';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
@@ -184,17 +184,15 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
 }
 function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,setDisable,setSelectedRows,handleSelectAllClick}) {
   const [selectedMode,setSelectedMode]=useState('monthly');
-  const [monthlyPaymentList,setMonthlyPaymentList]=useState([]);
+  const [monthlyPaymentList,setMonthlyPaymentList]=useState([...paymentList]);
   const [yearlyPaymentList,setYearlyPaymentList]=useState([]);
 
-  useEffect(() => {
-      setMonthlyPaymentList([...paymentList]);
-  }, []);
+ 
   const getModeWiseHistory=async(mode)=>{
     setSelectedMode(mode);
     if(mode==='yearly'){
       if(yearlyPaymentList.length<=0){
-        await getNearstPaidMonth(paymentList).then(list=>{
+        await getYearlyPaymentList(paymentList).then(list=>{
           setPaymentList([...list]);
           setYearlyPaymentList([...list]);
           setCheckboxes([...list]);
@@ -218,6 +216,7 @@ function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,set
         setCheckboxes(monthlyPaymentList.filter(item=>item.status==='Pending'));
         setDisable(false);
         setSelectedRows([]);
+        handleSelectAllClick(false,monthlyPaymentList)
     }
   }
  

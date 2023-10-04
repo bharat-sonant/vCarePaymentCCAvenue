@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { getData, saveData } from "./dbService";
 import { generateRandomString } from "./commonService";
-import { CurrencyBitcoinTwoTone } from "@mui/icons-material";
 
 
 export const getPaymentCollectionHistory=() => {
@@ -104,24 +103,23 @@ export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
     
   }
   
-export const getNearstPaidMonth=async(paymentList) => {
+export const getYearlyPaymentList=async(paymentList) => {
   let list=[]
   const cardNo=localStorage.getItem('cardNo');
   return new Promise(async(resolve) => {
     let lastPaidMonthDetail = paymentList.find(item=>item.timeStamp===(Math.max(...paymentList.filter(payment =>payment.status === 'Paid').map(payment =>payment.timeStamp))));
     let lastPaidDate="";
     let nextTillDate="";
-    let amount="";
+    const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount");
 
     if(lastPaidMonthDetail!==undefined){
        lastPaidDate=dayjs(`${Number(lastPaidMonthDetail.year)}-${lastPaidMonthDetail.month}`).add(1, 'month');
        nextTillDate=dayjs(`${Number(lastPaidMonthDetail.year)+1}-${lastPaidMonthDetail.month}`);
-       amount=lastPaidMonthDetail.amount;
+       
     }
     else{
       lastPaidDate=dayjs(`${Number(paymentList[0].year)}-${paymentList[0].month}`);
       nextTillDate=dayjs(`${Number(paymentList[0].year)+1}-${paymentList[0].month}`).subtract(1, 'month');
-      amount=paymentList[0].amount;
     }
     
     while (lastPaidDate.isBefore(nextTillDate.endOf('month'))) {
