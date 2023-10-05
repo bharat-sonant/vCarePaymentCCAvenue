@@ -7,9 +7,11 @@ export const getCardDetail=(ward,line,card) => {
       const path="Houses/"+ward+"/"+line+"/MNZ"+card
       getData(path).then((response) => {
         if(response!==null){
+          const servingCount=response.servingCount!=""?response.servingCount:1;
           localStorage.setItem('name',response.name);
           localStorage.setItem('cardType',response.cardType);
           localStorage.setItem('houseTypeId',response.houseType);
+          localStorage.setItem('servingCount',servingCount)
           resolve(response)
         }
         else{
