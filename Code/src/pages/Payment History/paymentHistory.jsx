@@ -50,9 +50,16 @@ const PaymentHistory=()=> {
     }
     
   };
-  const handleSelectAllClick = (checked,list) => {
+  const handleSelectAllClick = (checked,list,type) => {
         if (checked) {
-          let total= list.reduce((total, item) => total + Number(item.amount), 0);
+          let total=0;
+          if(type==='monthly'){
+            total=list.reduce((total, item) => total + Number(item.amount), 0);
+          }
+          else{
+            total=list.reduce((total, item) => total + Number(item.amount), 0);
+            total=total-list[0].amount
+          }
           setTotalPayment(total);
           const newSelected = list.map(item =>`${item.month}-${item.year}`);
           setSelectedRows(newSelected);
@@ -78,7 +85,7 @@ const PaymentHistory=()=> {
         <TableHead  style={{position:'sticky', zIndex:99}}>
           <TableRow>
             <TableCell padding="checkbox" variant='head'>
-              <Checkbox  sx={{color: '#24B903','&.Mui-checked': {color:'#24B903'}}} onClick={(e)=>handleSelectAllClick(e.target.checked,checkboxes)}
+              <Checkbox  sx={{color: '#24B903','&.Mui-checked': {color:'#24B903'}}} onClick={(e)=>handleSelectAllClick(e.target.checked,checkboxes,'monthly')}
                checked={selectedRows.length===checkboxes.length} hidden={checkboxes.length===0}
                disabled={disable}/> </TableCell>
             <TableCell className='table-header'  variant='head'>Month-Year</TableCell>
@@ -125,8 +132,7 @@ const PaymentHistory=()=> {
   </div>
   </div>
 
-  )
-  
+  );
 }
 
 export default PaymentHistory
@@ -198,7 +204,7 @@ function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,set
           setCheckboxes([...list]);
           setDisable(true);
           setSelectedRows(list.map(item =>`${item.month}-${item.year}`));
-          handleSelectAllClick(true,list)
+          handleSelectAllClick(true,list,mode)
           
         })
       }
@@ -207,7 +213,7 @@ function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,set
         setCheckboxes([...yearlyPaymentList]);
         setDisable(true);
         setSelectedRows(yearlyPaymentList.map(item =>`${item.month}-${item.year}`));
-        handleSelectAllClick(true,yearlyPaymentList)
+        handleSelectAllClick(true,yearlyPaymentList,mode)
         
       }
     }
@@ -216,7 +222,7 @@ function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,set
         setCheckboxes(monthlyPaymentList.filter(item=>item.status==='Pending'));
         setDisable(false);
         setSelectedRows([]);
-        handleSelectAllClick(false,monthlyPaymentList)
+        handleSelectAllClick(false,monthlyPaymentList,mode)
     }
   }
  
