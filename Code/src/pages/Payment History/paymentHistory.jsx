@@ -81,7 +81,7 @@ const PaymentHistory=()=> {
     <Box  sx={{ width: '100%', mb: 3 , pt:8}} >
       <Paper >
       <EnhancedTableToolbar numSelected={selectedRows.length} />
-    <TableContainer  >
+    <TableContainer sx={{height:'55vh'}}  >
       <Table stickyHeader>
         <TableHead  style={{position:'sticky', zIndex:99}}>
           <TableRow>
