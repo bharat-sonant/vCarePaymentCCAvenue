@@ -3,13 +3,14 @@ import { getData, saveData } from "./dbService";
 import { generateRandomString } from "./commonService";
 
 
-export const getPaymentCollectionHistory=() => {
+export const getPaymentCollectionHistory=(setCompleteList) => {
     return new Promise((resolve) => {
     const cardNo=localStorage.getItem('cardNo')
       const path="PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo;
       getData(path).then(async(response) => {
         let list=[]
         if(response!==null){
+          let completeList=[];
           const currentMonth = dayjs().subtract(1, 'month');
           const currentTimeStamp=currentMonth.valueOf();
           const startMonth = dayjs('2022-11-01'); 
@@ -34,10 +35,11 @@ export const getPaymentCollectionHistory=() => {
                     list.push({year:year,month:month,amount:resp.amount,status:resp.status,timeStamp:timeStamp});
                     referenceYearMonthArray=referenceYearMonthArray.filter(item=>item!==year+"/"+month)
                    }
-                   
-                })
+                   completeList.push({year:year,month:month,amount:response[year][month].amount,status:response[year][month].status,timeStamp:timeStamp});
+                });
                }
             });
+
             if(referenceYearMonthArray.length>0){
               const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
               referenceYearMonthArray.map(async(yearMonth)=>{
@@ -51,6 +53,7 @@ export const getPaymentCollectionHistory=() => {
             }
             
             list=list.sort((a,b)=>a.timeStamp>b.timeStamp?1:-1);
+            setCompleteList([...completeList])
             resolve(list);
             
         }
@@ -70,6 +73,7 @@ export const getPaymentCollectionHistory=() => {
               currentDate = currentDate.add(1, 'month');
             }
             list=list.sort((a,b)=>a.timeStamp>b.timeStamp?1:-1)
+            setCompleteList([...list])
             resolve (list)
         }
       })
@@ -136,7 +140,7 @@ export const getYearlyPaymentList=async(paymentList) => {
       list.push({year:year,month:monthName,amount:amount,status:'Pending',timeStamp:timeStamp});
       }
       else{
-        list.push({year:year,month:monthName,amount:detail.amount,status:'Pending',timeStamp:timeStamp});
+        list.push({year:year,month:monthName,amount:detail.amount,status:detail.status,timeStamp:timeStamp});
       }
     
       lastPaidDate = lastPaidDate.add(1, 'month');

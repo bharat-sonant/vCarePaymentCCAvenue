@@ -16,12 +16,13 @@ const PaymentHistory=()=> {
   const [checkboxes, setCheckboxes] = useState([]);
   const [totalPayment,setTotalPayment]=useState(0);
   const [hidden,setHidden]=useState(true);
-  const [disable,setDisable]=useState(false)
+  const [disable,setDisable]=useState(false);
+  const [completeList,setCompleteList]=useState([])
 
   
   useEffect(() => {
   
-      getPaymentCollectionHistory().then(list=>{
+      getPaymentCollectionHistory(setCompleteList).then(list=>{
         if(list!==null){
           setPaymentList(list);
           setCheckboxes(list.filter(item=>item.status==='Pending'));
@@ -112,7 +113,7 @@ const PaymentHistory=()=> {
         </TableBody>
       </Table>
     </TableContainer>
-    {paymentList.length>0 && <PaymentModeSelectionPanel paymentList={paymentList} setPaymentList={setPaymentList} setCheckboxes={setCheckboxes} setDisable={setDisable} setSelectedRows={setSelectedRows} handleSelectAllClick={handleSelectAllClick}/>}
+    {paymentList.length>0 && <PaymentModeSelectionPanel paymentList={paymentList} setPaymentList={setPaymentList} setCheckboxes={setCheckboxes} setDisable={setDisable} setSelectedRows={setSelectedRows} handleSelectAllClick={handleSelectAllClick} completeList={completeList}/>}
     
     <Toolbar sx={{ pl: { sm: 2 },pr: { xs: 1, sm: 1 }}}>
         <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
@@ -188,7 +189,7 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
     </div>
   );
 }
-function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,setDisable,setSelectedRows,handleSelectAllClick}) {
+function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,setDisable,setSelectedRows,handleSelectAllClick,completeList}) {
   const [selectedMode,setSelectedMode]=useState('monthly');
   const [monthlyPaymentList,setMonthlyPaymentList]=useState([...paymentList]);
   const [yearlyPaymentList,setYearlyPaymentList]=useState([]);
@@ -198,7 +199,7 @@ function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,set
     setSelectedMode(mode);
     if(mode==='yearly'){
       if(yearlyPaymentList.length<=0){
-        await getYearlyPaymentList(paymentList).then(list=>{
+        await getYearlyPaymentList(completeList).then(list=>{
           setPaymentList([...list]);
           setYearlyPaymentList([...list]);
           setCheckboxes([...list]);
