@@ -35,11 +35,14 @@ export const getPaymentCollectionHistory=(setCompleteList) => {
                     list.push({year:year,month:month,amount:resp.amount,status:resp.status,timeStamp:timeStamp});
                     referenceYearMonthArray=referenceYearMonthArray.filter(item=>item!==year+"/"+month)
                    }
+                   else if(response[year][month].status==="Paid"){
+                    let resp=response[year][month];
+                    list.push({year:year,month:month,amount:resp.amount,status:resp.status,timeStamp:timeStamp});
+                   }
                    completeList.push({year:year,month:month,amount:response[year][month].amount,status:response[year][month].status,timeStamp:timeStamp});
                 });
                }
             });
-
             if(referenceYearMonthArray.length>0){
               const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
               referenceYearMonthArray.map(async(yearMonth)=>{
