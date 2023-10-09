@@ -113,7 +113,7 @@ const PaymentHistory=()=> {
         </TableBody>
       </Table>
     </TableContainer>
-    {paymentList.length>0 && <PaymentModeSelectionPanel paymentList={paymentList} setPaymentList={setPaymentList} setCheckboxes={setCheckboxes} setDisable={setDisable} setSelectedRows={setSelectedRows} handleSelectAllClick={handleSelectAllClick} completeList={completeList}/>}
+    {paymentList.length>0 && <PaymentModeSelectionPanel paymentList={paymentList} setPaymentList={setPaymentList} setCheckboxes={setCheckboxes} setDisable={setDisable} setSelectedRows={setSelectedRows} handleSelectAllClick={handleSelectAllClick} completeList={completeList} setCompleteList={setCompleteList}/>}
     
     <Toolbar sx={{ pl: { sm: 2 },pr: { xs: 1, sm: 1 }}}>
         <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
@@ -189,7 +189,7 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
     </div>
   );
 }
-function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,setDisable,setSelectedRows,handleSelectAllClick,completeList}) {
+function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,setDisable,setSelectedRows,handleSelectAllClick,completeList,setCompleteList}) {
   const [selectedMode,setSelectedMode]=useState('monthly');
   const [monthlyPaymentList,setMonthlyPaymentList]=useState([...paymentList]);
   const [yearlyPaymentList,setYearlyPaymentList]=useState([]);
@@ -199,18 +199,20 @@ function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,set
     setSelectedMode(mode);
     if(mode==='yearly'){
       if(yearlyPaymentList.length<=0){
-        await getYearlyPaymentList(completeList).then(list=>{
-          setPaymentList([...list]);
+        await getYearlyPaymentList(completeList).then((resp)=>{
+          let list=resp.paymentList.filter(item=>item.timeStamp > resp.lastPaidMonthDetail.timeStamp);
+          setPaymentList([...resp.paymentList]);
+          setCompleteList([...resp.paymentList]);
           setYearlyPaymentList([...list]);
           setCheckboxes([...list]);
           setDisable(true);
-          setSelectedRows(list.map(item =>`${item.month}-${item.year}`));
+          setSelectedRows([...list.map(item =>`${item.month}-${item.year}`)]);
           handleSelectAllClick(true,list,mode)
           
         })
       }
       else{
-        setPaymentList([...yearlyPaymentList]);
+        setPaymentList([...completeList]);
         setCheckboxes([...yearlyPaymentList]);
         setDisable(true);
         setSelectedRows(yearlyPaymentList.map(item =>`${item.month}-${item.year}`));

@@ -35,10 +35,6 @@ export const getPaymentCollectionHistory=(setCompleteList) => {
                     list.push({year:year,month:month,amount:resp.amount,status:resp.status,timeStamp:timeStamp});
                     referenceYearMonthArray=referenceYearMonthArray.filter(item=>item!==year+"/"+month)
                    }
-                   else if(response[year][month].status==="Paid"){
-                    let resp=response[year][month];
-                    list.push({year:year,month:month,amount:resp.amount,status:resp.status,timeStamp:timeStamp});
-                   }
                    completeList.push({year:year,month:month,amount:response[year][month].amount,status:response[year][month].status,timeStamp:timeStamp});
                 });
                }
@@ -114,7 +110,7 @@ export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
   }
   
 export const getYearlyPaymentList=async(paymentList) => {
-  let list=[]
+  let list=[];
   const cardNo=localStorage.getItem('cardNo');
   return new Promise(async(resolve) => {
     let lastPaidMonthDetail = paymentList.find(item=>item.timeStamp===(Math.max(...paymentList.filter(payment =>payment.status === 'Paid').map(payment =>payment.timeStamp))));
@@ -131,24 +127,26 @@ export const getYearlyPaymentList=async(paymentList) => {
       lastPaidDate=dayjs(`${Number(paymentList[0].year)}-${paymentList[0].month}`);
       nextTillDate=dayjs(`${Number(paymentList[0].year)+1}-${paymentList[0].month}`).subtract(1, 'month');
     }
-    
     while (lastPaidDate.isBefore(nextTillDate.endOf('month'))) {
       const year = lastPaidDate.format('YYYY');
       const monthName = lastPaidDate.format('MMM');
       let obj={amount:amount,status:'Pending'}
       const timeStamp=dayjs(`${year}-${monthName}`).valueOf();
-      const detail=paymentList.find(payment=>payment.month===monthName && payment.year===year)
+      const detail=paymentList.find(payment=>payment.month===monthName && payment.year===year);
       if(detail===undefined){
       await saveData("PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo+"/"+year+"/"+monthName,obj);
-      list.push({year:year,month:monthName,amount:amount,status:'Pending',timeStamp:timeStamp});
+      // list.push({year:year,month:monthName,amount:amount,status:'Pending',timeStamp:timeStamp});
+      paymentList.push({year:year,month:monthName,amount:amount,status:'Pending',timeStamp:timeStamp})
       }
       else{
-        list.push({year:year,month:monthName,amount:detail.amount,status:detail.status,timeStamp:timeStamp});
+        // list.push({year:year,month:monthName,amount:detail.amount,status:detail.status,timeStamp:timeStamp});
+        // paymentList.push({year:year,month:monthName,amount:detail.amount,status:detail.status,timeStamp:timeStamp})
       }
     
       lastPaidDate = lastPaidDate.add(1, 'month');
     }
-    resolve (list)
+    paymentList=paymentList.sort((a,b)=>a.timeStamp>b.timeStamp?1:-1);
+    resolve ({paymentList,lastPaidMonthDetail})
     
   })
     
