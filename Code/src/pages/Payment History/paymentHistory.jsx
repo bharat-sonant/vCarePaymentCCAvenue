@@ -177,6 +177,7 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
   const navigate=useNavigate()
   const savePaymentHistory=async()=>{
     if(transactionAmount>0){
+      console.log(transactionAmount,monthYear)
     await saveCCAvenuePaymentRequestHistory(transactionAmount,monthYear);
     await navigate('/payment-request')
     
@@ -200,7 +201,7 @@ function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,set
     if(mode==='yearly'){
       if(yearlyPaymentList.length<=0){
         await getYearlyPaymentList(completeList).then((resp)=>{
-          let list=resp.paymentList.filter(item=>item.timeStamp > resp.lastPaidMonthDetail.timeStamp);
+          let list=resp.paymentList.filter(item=>item.timeStamp >= resp.lastTimeStamp && item.timeStamp <= resp.nextTimeStamp);
           setPaymentList([...resp.paymentList]);
           setCompleteList([...resp.paymentList]);
           setYearlyPaymentList([...list]);

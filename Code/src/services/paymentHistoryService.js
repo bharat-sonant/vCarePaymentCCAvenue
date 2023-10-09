@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { getData, saveData } from "./dbService";
 import { generateRandomString } from "./commonService";
+import { ContactlessOutlined } from "@mui/icons-material";
 
 
 export const getPaymentCollectionHistory=(setCompleteList) => {
@@ -116,16 +117,27 @@ export const getYearlyPaymentList=async(paymentList) => {
     let lastPaidMonthDetail = paymentList.find(item=>item.timeStamp===(Math.max(...paymentList.filter(payment =>payment.status === 'Paid').map(payment =>payment.timeStamp))));
     let lastPaidDate="";
     let nextTillDate="";
+    let lastTimeStamp=0;
+    let nextTimeStamp=0;
+    
     const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
 
     if(lastPaidMonthDetail!==undefined){
        lastPaidDate=dayjs(`${Number(lastPaidMonthDetail.year)}-${lastPaidMonthDetail.month}`).add(1, 'month');
        nextTillDate=dayjs(`${Number(lastPaidMonthDetail.year)+1}-${lastPaidMonthDetail.month}`);
+       lastTimeStamp=lastPaidDate.valueOf();
+       nextTimeStamp=nextTillDate.valueOf();
        
     }
     else{
-      lastPaidDate=dayjs(`${Number(paymentList[0].year)}-${paymentList[0].month}`);
-      nextTillDate=dayjs(`${Number(paymentList[0].year)+1}-${paymentList[0].month}`).subtract(1, 'month');
+    //   lastPaidDate=dayjs(`${Number(paymentList[0].year)}-${paymentList[0].month}`);
+    //   nextTillDate=dayjs(`${Number(paymentList[0].year)+1}-${paymentList[0].month}`).subtract(1, 'month');
+    //   console.log(lastPaidDate,nextTillDate)
+      lastPaidDate=dayjs(`2022-Nov`);
+      nextTillDate=dayjs(`2023-Oct`);
+      lastTimeStamp=lastPaidDate.valueOf();
+      nextTimeStamp=nextTillDate.valueOf();
+
     }
     while (lastPaidDate.isBefore(nextTillDate.endOf('month'))) {
       const year = lastPaidDate.format('YYYY');
@@ -146,8 +158,9 @@ export const getYearlyPaymentList=async(paymentList) => {
       lastPaidDate = lastPaidDate.add(1, 'month');
     }
     paymentList=paymentList.sort((a,b)=>a.timeStamp>b.timeStamp?1:-1);
-    resolve ({paymentList,lastPaidMonthDetail})
-    
+   
+ 
+    resolve ({paymentList,lastTimeStamp,nextTimeStamp});    
   })
     
     
