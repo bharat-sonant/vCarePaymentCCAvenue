@@ -11,10 +11,10 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import './navSpeedDial.css'
 
 const actions = [
-  { icon: <FiberNewIcon style={{color:'#24b903'}}/>, name: 'New Card',path:"/" },
-  { icon: <ContactsIcon  style={{color:'#24b903'}}/>, name: 'Card Details',path:"/cardDetail" },
-  { icon: <PaymentsIcon style={{color:'#24b903'}}/>, name: 'Payment History',path:"/payment-history" },
-  { icon: <HistoryIcon  style={{color:'#24b903'}}/>, name: 'Transaction History',path:"/transaction-history" },
+  { icon: <FiberNewIcon style={{color:'#24b903', width:'200px'}}/>, name: 'New Card',path:"/" },
+  { icon: <ContactsIcon  style={{color:'#24b903', width:'200px'}}/>, name: 'Card Details',path:"/cardDetail" },
+  { icon: <PaymentsIcon style={{color:'#24b903', width:'200px'}}/>, name: 'Payment History',path:"/payment-history" },
+  { icon: <HistoryIcon  style={{color:'#24b903', width:'200px'}}/>, name: 'Transaction History',path:"/transaction-history" },
   
 ];
 
@@ -33,7 +33,7 @@ export default function NavSpeedDial() {
     <Box sx={{width:'100%',zIndex:'9999999', transform: 'translateZ(0px)',position: 'fixed', bottom: 50, left: 200,flexGrow: 1 }}>
       {/* <Backdrop open={open} /> */}
       
-      <SpeedDial
+      <SpeedDial 
         ariaLabel="SpeedDial tooltip example"
         // sx={{  position: 'absolute', bottom: 50, right: 16  }}
         icon={<FormatListBulletedIcon />}
@@ -43,7 +43,7 @@ export default function NavSpeedDial() {
         
       >
         {actions.map((action) => (
-          <SpeedDialAction
+          <SpeedDialAction 
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
