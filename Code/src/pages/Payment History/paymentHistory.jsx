@@ -113,7 +113,7 @@ const PaymentHistory=()=> {
         </TableBody>
       </Table>
     </TableContainer>
-    {paymentList.length>0 && <PaymentModeSelectionPanel paymentList={paymentList} setPaymentList={setPaymentList} setCheckboxes={setCheckboxes} setDisable={setDisable} setSelectedRows={setSelectedRows} handleSelectAllClick={handleSelectAllClick} completeList={completeList} setCompleteList={setCompleteList}/>}
+    {/* {paymentList.length>0 && <PaymentModeSelectionPanel paymentList={paymentList} setPaymentList={setPaymentList} setCheckboxes={setCheckboxes} setDisable={setDisable} setSelectedRows={setSelectedRows} handleSelectAllClick={handleSelectAllClick} completeList={completeList} setCompleteList={setCompleteList}/>} */}
     
     <Toolbar sx={{ pl: { sm: 2 },pr: { xs: 1, sm: 1 }}}>
         <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
@@ -177,7 +177,6 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
   const navigate=useNavigate()
   const savePaymentHistory=async()=>{
     if(transactionAmount>0){
-      console.log(transactionAmount,monthYear)
     await saveCCAvenuePaymentRequestHistory(transactionAmount,monthYear);
     await navigate('/payment-request')
     
@@ -190,6 +189,12 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
     </div>
   );
 }
+
+
+
+
+
+///////////////// Not using now/////////////////////
 function PaymentModeSelectionPanel({paymentList,setPaymentList,setCheckboxes,setDisable,setSelectedRows,handleSelectAllClick,completeList,setCompleteList}) {
   const [selectedMode,setSelectedMode]=useState('monthly');
   const [monthlyPaymentList,setMonthlyPaymentList]=useState([...paymentList]);
