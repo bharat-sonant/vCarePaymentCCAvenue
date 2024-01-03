@@ -1,6 +1,6 @@
 import {Box, Card, CardContent, CardHeader, Divider, Skeleton} from '@mui/material';
 import React, { useEffect } from 'react'
-import { getCardDetail, getHouseTypeJson } from '../../services/cardDetailService';
+import { getCardDetail, getEntitiesCardDetail, getHouseTypeJson } from '../../services/cardDetailService';
 import { useState } from 'react';
 import Header from '../../components/Header';
 import NavSpeedDial from '../../components/Navigation Button/Nav SpeedDial/navSpeedDial';
@@ -15,12 +15,30 @@ const CardDetails = () => {
 
       getHouseTypeJson().then(houseTypeList=>{
         if(houseTypeList!==null){
-          getCardDetail(cardDetailParams.ward, cardDetailParams.lineNo, cardDetailParams.cardNo).then(data => {
-            if (data !== null) {
-              data.houseTypeName=houseTypeList[Number(data.houseType)].name;
-              setRespObject(data);
-            }
-          });
+          const houseId = localStorage.getItem('houseTypeId')
+          if (houseId === '19' || houseId === '20') {
+            getEntitiesCardDetail(cardDetailParams.ward, cardDetailParams.lineNo, cardDetailParams.cardNo).then(data => {
+              if (data !== null) {
+                let keyArray=Object.keys(data)
+                keyArray.map(key=>{
+                  data.name = data[key].name;
+                  data.address = data[key].address;
+                  data.mobile = data[key].mobile;
+                  data.cardNo = "MNZ"+cardDetailParams.cardNo
+                  data.houseTypeName=houseTypeList[Number(data[key].entityType)].name;
+                   
+                })
+                setRespObject(data);
+              }
+            });
+          }else{
+            getCardDetail(cardDetailParams.ward, cardDetailParams.lineNo, cardDetailParams.cardNo).then(data => {
+              if (data !== null) {
+                data.houseTypeName=houseTypeList[Number(data.houseType)].name;
+                setRespObject(data);
+              }
+            });
+          }
         }
       });
     }

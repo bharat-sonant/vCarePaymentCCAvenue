@@ -21,8 +21,8 @@ const PaymentHistory=()=> {
 
   
   useEffect(() => {
-  
-      getPaymentCollectionHistory(setCompleteList).then(list=>{
+      const houseId = localStorage.getItem('houseTypeId')
+      getPaymentCollectionHistory(setCompleteList,houseId).then(list=>{
         if(list!==null){
           setPaymentList(list);
           setCheckboxes(list.filter(item=>item.status==='Pending'));
@@ -177,7 +177,8 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
   const navigate=useNavigate()
   const savePaymentHistory=async()=>{
     if(transactionAmount>0){
-    await saveCCAvenuePaymentRequestHistory(transactionAmount,monthYear);
+    const houseId = localStorage.getItem('houseTypeId')
+    await saveCCAvenuePaymentRequestHistory(transactionAmount,monthYear,houseId);
     await navigate('/payment-request')
     
   }

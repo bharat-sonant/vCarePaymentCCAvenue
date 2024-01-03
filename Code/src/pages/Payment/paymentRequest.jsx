@@ -76,8 +76,8 @@ function PaymentButton() {
   const [language,setLanguage]=useState('EN');
   const [workingKey,setWorkingKey]=useState('65A0242CD1D57D3004836C3BB5532B12'); // Replace with your CCAvenue working key
   const [enRequest,setEnRequest]=useState('');
-  const [redirect_url,setReDirectURL]=useState('https://us-central1-ccavenuemalviyanagar.cloudfunctions.net/api/ccavenuePayment');
-  const [cancel_url,setCancelURL]=useState('https://us-central1-ccavenuemalviyanagar.cloudfunctions.net/api/ccavenuePayment');
+  const [redirect_url,setReDirectURL]=useState('http://localhost:3001/ccavenuePayment');
+  const [cancel_url,setCancelURL]=useState('http://localhost:3001/ccavenuePayment');
   const [url,setURL]=useState("");
   const ccav = require('../commons/ccavutil.js');
   window.Buffer = Buffer;

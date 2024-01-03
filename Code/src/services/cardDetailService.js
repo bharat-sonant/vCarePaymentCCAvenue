@@ -24,6 +24,23 @@ export const getCardDetail=(ward,line,card) => {
     });
   }
 
+  export const getEntitiesCardDetail=(ward,line,card) => {
+    return new Promise((resolve) => {
+      const path="Houses/"+ward+"/"+line+"/MNZ"+card+"/Entities"
+      getData(path).then((response) => {
+        if(response!==null){
+          resolve(response)
+        }
+        else{
+            resolve (null)
+        }
+      })
+        .catch((error) => {
+            resolve(null)
+        });
+    });
+  }
+
   export const getHouseTypeJson=() => {
     return new Promise((resolve) => {
       const path=getStoragePath()+"Defaults%2FFinalHousesType.json?alt=media";

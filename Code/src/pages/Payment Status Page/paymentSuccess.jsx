@@ -33,9 +33,10 @@ const setDefaults=async (params)=>{
   }, 1000);
     await getCCAvenuePaymentRequestHistory().then(async(response)=>{
       if(response!==null){
-      await saveCCAvenuePaymentTransactionHistory(response,params);
-      await savePaymentCollectionHistory(response.monthYear);
-      await saveCCAvenuePaymentCollectorHistory(response,params);
+      const houseId = localStorage.getItem('houseTypeId')
+      await saveCCAvenuePaymentTransactionHistory(response,params,houseId);
+      await savePaymentCollectionHistory(response.monthYear,houseId);
+      await saveCCAvenuePaymentCollectorHistory(response,params,houseId);
       await deleteCCAvenuePaymentRequestHistory();
     }
     })

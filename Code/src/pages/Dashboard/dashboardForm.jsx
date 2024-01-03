@@ -7,8 +7,10 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { getCardWardMapping } from '../../services/formService';
+import { getCardDetail } from '../../services/cardDetailService';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
+import { showAlert } from '../../services/commonService';
 
 
 const DashboardForm = () => {
@@ -34,7 +36,20 @@ const DashboardForm = () => {
       else {
         localStorage.setItem("cardNo", "MNZ" + cardNo);
         localStorage.setItem("cardDetailParams",JSON.stringify({cardNo:cardNo,ward:data.ward,lineNo:data.line}));
-        navigate('/cardDetail')
+        getCardDetail(data.ward, data.line,cardNo).then(data => {
+          if (data !== null) {
+            const houseId = localStorage.getItem('houseTypeId')
+            if (houseId === '19' || houseId === '20') {
+              navigate('/EntityValidateForm')
+            }else{
+              navigate('/cardDetail')
+            }
+          }else{
+            showAlert('House data not available',"Error");
+          
+          }
+        });
+        
       }
     })
 

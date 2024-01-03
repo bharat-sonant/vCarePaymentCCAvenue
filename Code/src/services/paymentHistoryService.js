@@ -4,10 +4,18 @@ import { generateRandomString } from "./commonService";
 import { ContactlessOutlined } from "@mui/icons-material";
 
 
-export const getPaymentCollectionHistory=(setCompleteList) => {
+export const getPaymentCollectionHistory=(setCompleteList,houseTypeId) => {
     return new Promise((resolve) => {
     const cardNo=localStorage.getItem('cardNo')
-      const path="PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo;
+    let path;
+    console.log(houseTypeId)
+      if(houseTypeId === '19' || houseTypeId === '20'){
+
+        path="PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo+"/Entities/"+localStorage.getItem('entityId');
+      }else{
+        path="PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo;
+      }
+      console.log(path)
       getData(path).then(async(response) => {
         let list=[]
         if(response!==null){
@@ -41,7 +49,14 @@ export const getPaymentCollectionHistory=(setCompleteList) => {
                }
             });
             if(referenceYearMonthArray.length>0){
-              const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
+              let amount;
+              if(houseTypeId === '19' || houseTypeId === '20'){
+                amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('entityTypeId')+"/amount");
+              }else{
+                amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
+              }
+
+              // const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
               referenceYearMonthArray.map(async(yearMonth)=>{
                 const year=yearMonth.split('/')[0];
                 const month=yearMonth.split('/')[1];
@@ -58,7 +73,13 @@ export const getPaymentCollectionHistory=(setCompleteList) => {
             
         }
         else{
-            const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
+            let amount
+            if(houseTypeId === '19' || houseTypeId === '20'){
+              amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('entityTypeId')+"/amount");
+            }else{
+              amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
+            }
+            // const amount=await getData("Settings/PaymentCollectionSettings/EntityType/"+localStorage.getItem('houseTypeId')+"/amount")*localStorage.getItem('servingCount');
             const currentMonth =  dayjs().subtract(1, 'month');
             const startMonth = dayjs('2022-11-01'); 
           
@@ -67,7 +88,7 @@ export const getPaymentCollectionHistory=(setCompleteList) => {
               const year = currentDate.format('YYYY');
               const monthName = currentDate.format('MMM');
               let obj={amount:amount,status:'Pending'}
-              await saveData("PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo+"/"+year+"/"+monthName,obj);
+              await saveData(path+"/"+year+"/"+monthName,obj);
               const timeStamp=dayjs(`${year}-${monthName}`).valueOf();
               list.push({year:year,month:monthName,amount:amount,status:'Pending',timeStamp:timeStamp});
               currentDate = currentDate.add(1, 'month');
@@ -82,11 +103,16 @@ export const getPaymentCollectionHistory=(setCompleteList) => {
         });
     });
   }
-export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear) => {
+export const saveCCAvenuePaymentRequestHistory=async(amount,monthYear,houseTypeId) => {
     const cardNo=localStorage.getItem('cardNo');
     let newKey=1;
     const date=dayjs().format('YYYY-MM-DD');
-    let path="/PaymentCollectionInfo/PaymentRequestHistory/"+cardNo+"/"+date;
+    let path;
+    if(houseTypeId === '19' || houseTypeId === '20'){
+      path="PaymentCollectionInfo/PaymentRequestHistory/"+cardNo+"/Entities/"+localStorage.getItem('entityId')+"/"+date;
+    }else{
+      path="PaymentCollectionInfo/PaymentRequestHistory/"+cardNo+"/"+date;
+    }
     const response=await getData(path);
       if(response!==null){
         let keyArray=Object.keys(response);

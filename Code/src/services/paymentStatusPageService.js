@@ -19,12 +19,18 @@ export const getCCAvenuePaymentRequestHistory=async() => {
         });
     
 }
-export const saveCCAvenuePaymentTransactionHistory=async(data,params)=>{
+export const saveCCAvenuePaymentTransactionHistory=async(data,params,houseTypeId)=>{
     const cardNo=localStorage.getItem('cardNo');
     const date=data.transactionDateTime.split(' ')[0];
     const year=dayjs(date).format('YYYY');
     const month=dayjs(date).format('MMMM');
-    let path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo+"/"+year+"/"+month+"/"+date+"/";
+    let path;
+    if(houseTypeId === '19' || houseTypeId === '20'){
+        path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo+"/Entities/"+localStorage.getItem('entityId')+"/"+year+"/"+month+"/"+date+"/";
+      }else{
+        path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo+"/"+year+"/"+month+"/"+date+"/";
+      }
+    // let path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo+"/"+year+"/"+month+"/"+date+"/";
     let newKey=1;
     const resp=await getData(path);
     if(resp!=null){
@@ -43,21 +49,34 @@ export const saveCCAvenuePaymentTransactionHistory=async(data,params)=>{
 
     await saveData(path+newKey,data);
 }
-export const savePaymentCollectionHistory=async(yearMonth)=>{
+export const savePaymentCollectionHistory=async(yearMonth,houseTypeId)=>{
 
    let list=yearMonth.split(',');
    const cardNo=localStorage.getItem('cardNo')
    list.map(item=>{
     const year=item.split('-')[1];
     const month=item.split('-')[0];
-    const path="PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo+"/"+year+"/"+month;
+    let path;
+    if(houseTypeId === '19' || houseTypeId === '20'){
+        path="PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo+"/Entities/"+localStorage.getItem('entityId')+"/"+year+"/"+month;
+      }else{
+        path="PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo+"/"+year+"/"+month;
+      }
+
+    // const path="PaymentCollectionInfo/PaymentCollectionHistory/"+cardNo+"/"+year+"/"+month;
     saveData(path,{status:'Paid'});
    })
 }
-export const saveCCAvenuePaymentCollectorHistory=async(data,params) => {
+export const saveCCAvenuePaymentCollectorHistory=async(data,params,houseTypeId) => {
         const date=data.transactionDateTime.split(' ')[0];
         const id=data.paymentCollectionById;
-        const path="PaymentCollectionInfo/PaymentCollectorHistory/"+id+"/"+date+"/";
+        let path;
+        if(houseTypeId === '19' || houseTypeId === '20'){
+            path="PaymentCollectionInfo/PaymentCollectorHistory/"+id+"/Entities/"+localStorage.getItem('entityId')+"/"+date+"/";
+        }else{
+            path="PaymentCollectionInfo/PaymentCollectorHistory/"+id+"/"+date+"/";
+        }
+        // const path="PaymentCollectionInfo/PaymentCollectorHistory/"+id+"/"+date+"/";
         let newKey=1;
         const resp=await getData(path);
         if(resp!=null){
