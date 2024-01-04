@@ -14,7 +14,8 @@ const TransactionHistory = () => {
   }, [])
 
   const setDefault = () => {
-    getCCAvenuePaymentTransactionHistory().then(list => {
+    const houseId = localStorage.getItem('houseTypeId')
+    getCCAvenuePaymentTransactionHistory(houseId).then(list => {
       if (list !== null) {
         setHistoryArray([...list])
       }

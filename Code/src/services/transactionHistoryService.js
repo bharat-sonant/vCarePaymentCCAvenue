@@ -1,9 +1,17 @@
 import { getData } from "./dbService";
 
-export const getCCAvenuePaymentTransactionHistory=() => {
+export const getCCAvenuePaymentTransactionHistory=(houseTypeId) => {
     return new Promise((resolve) => {
     const cardNo=localStorage.getItem('cardNo')
-      const path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo;
+      let path;
+      console.log(houseTypeId)
+      if(houseTypeId === '19' || houseTypeId === '20'){
+        path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo+"/Entities/"+localStorage.getItem('entityId');
+      }else{
+        path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo;
+      }
+
+      // const path="PaymentCollectionInfo/PaymentTransactionHistory/"+cardNo;
       getData(path).then((response) => {
         let list=[]
         if(response!==null){
