@@ -19,15 +19,11 @@ const CardDetails = () => {
           if (houseId === '19' || houseId === '20') {
             getEntitiesCardDetail(cardDetailParams.ward, cardDetailParams.lineNo, cardDetailParams.cardNo).then(data => {
               if (data !== null) {
-                let keyArray=Object.keys(data)
-                keyArray.map(key=>{
-                  data.name = data[key].name;
-                  data.address = data[key].address;
-                  data.mobile = data[key].mobile;
+                  data.name = localStorage.getItem('name');
+                  data.address = localStorage.getItem('address');
+                  data.mobile = localStorage.getItem('mobile');
                   data.cardNo = "MNZ"+cardDetailParams.cardNo
-                  data.houseTypeName=houseTypeList[Number(data[key].entityType)].name;
-                   
-                })
+                  data.houseTypeName=houseTypeList[Number(localStorage.getItem('entityTypeId'))].name;
                 setRespObject(data);
               }
             });
