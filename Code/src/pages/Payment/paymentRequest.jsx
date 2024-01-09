@@ -11,13 +11,13 @@ import { deleteCCAvenuePaymentRequestHistory } from '../../services/paymentStatu
 const PaymentRequest=() => {
 
   const getCurrentDate = (separator='') => {
-
+    const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let newDate = new Date()
     let date = newDate.getDate();
-    let month = newDate.getMonth() + 1;
+    let month = newDate.getMonth();
     let year = newDate.getFullYear();
     
-    return `${date<10?`0${date}`:`${date}`}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
+    return `${date<10?`0${date}`:`${date}`}${separator}${MONTHS[month]}${separator}${year}`
   }
   
   return (
@@ -39,7 +39,7 @@ const PaymentRequest=() => {
                             <snap className='heading0'> Current Date  </snap>
                           </th>
                           <td className='border-0 ' style={{ width: '0%', }}>
-                            {getCurrentDate('-')}
+                            {getCurrentDate(' ')}
                           </td>
                         </tr>
                         <tr >
@@ -62,7 +62,7 @@ const PaymentRequest=() => {
 
                         <tr >
                           <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
-                            <snap className='heading0'> Payabel Months  </snap>
+                            <snap className='heading0'> Payable Months  </snap>
                           </th>
                           <td className='border-0 ' style={{ width: '0%', }}>
                             {localStorage.getItem('payMonths')}
@@ -71,7 +71,7 @@ const PaymentRequest=() => {
 
                         <tr >
                           <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
-                            <snap className='heading0'> Amount (₹) </snap>
+                            <snap className='heading0'> Payable Amount (₹) </snap>
                           </th>
                           <td className='border-0 ' style={{ width: '0%', }}>
                             {localStorage.getItem('transactionAmount')}

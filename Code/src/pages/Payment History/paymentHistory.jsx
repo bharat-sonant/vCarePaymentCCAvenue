@@ -7,6 +7,7 @@ import {  showAlertMobile } from '../../services/commonService';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import { Sort } from '@mui/icons-material';
 
 
 
@@ -38,12 +39,14 @@ const PaymentHistory=()=> {
     if (event.target.checked) {
        setSelectedRows([...selectedRows, id]);
        let total=Number(totalPayment)+Number(amount);
-       localStorage.setItem('payMonths',[...selectedRows, id])
+       localStorage.setItem('payMonths',datesort([...selectedRows, id]))
+      //  console.log(datesort([...selectedRows, id]))
        setTotalPayment(total);
        setHidden(false)
 
     } else {
       setSelectedRows(selectedRows.filter(rowId => rowId !== id));
+      localStorage.setItem('payMonths',datesort(selectedRows.filter(rowId => rowId !== id)))
       let total=Number(totalPayment)-Number(amount);
       setTotalPayment(total);
       if(total===0){
@@ -52,6 +55,16 @@ const PaymentHistory=()=> {
     }
     
   };
+
+  const datesort = (arr) => {
+    return arr.concat().sort((a,b)=>{
+    a = a.replace(/(\d+)(.*)/g,' 1 $1'); // Month 1 YEAR
+    b = b.replace(/(\d+)(.*)/g,' 1 $1'); // Month 1 YEAR
+     return new Date(a) - new Date(b)
+   })
+   }
+
+   
   const handleSelectAllClick = (checked,list,type) => {
         if (checked) {
           let total=0;
@@ -65,6 +78,7 @@ const PaymentHistory=()=> {
           setTotalPayment(total);
           const newSelected = list.map(item =>`${item.month}-${item.year}`);
           setSelectedRows(newSelected);
+          localStorage.setItem('payMonths',newSelected)
           setHidden(false)
 
           return;
