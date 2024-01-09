@@ -20,7 +20,9 @@ const DashboardForm = () => {
   const handleOnChange = (e) => {
     const numberPattern = /^\d+$/;
     if (numberPattern.test(e.target.value) || e.target.value === '') {
-      setCardNo(e.target.value);
+      const value = e.target.value;
+      const sixDigitValue = value.slice(0, 6);
+      setCardNo(sixDigitValue);
       setError(false)
     }
   }

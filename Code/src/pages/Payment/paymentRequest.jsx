@@ -24,6 +24,14 @@ const PaymentRequest=() => {
                   <div className='table-responsive'>
                     <table className="table table-one-iner mb-0">
                       <tbody>
+                      <tr >
+                          <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
+                            <snap className='heading0'> Current Date.  </snap>
+                          </th>
+                          <td className='border-0 ' style={{ width: '0%', }}>
+                            {localStorage.getItem('cardNo')}
+                          </td>
+                        </tr>
                         <tr >
                           <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
                             <snap className='heading0'> Card No.  </snap>
@@ -32,6 +40,16 @@ const PaymentRequest=() => {
                             {localStorage.getItem('cardNo')}
                           </td>
                         </tr>
+
+                        <tr >
+                          <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
+                            <snap className='heading0'> Payabel Months  </snap>
+                          </th>
+                          <td className='border-0 ' style={{ width: '0%', }}>
+                            {localStorage.getItem('cardNo')}
+                          </td>
+                        </tr>
+
                         <tr >
                           <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
                             <snap className='heading0'> Transaction Id </snap>

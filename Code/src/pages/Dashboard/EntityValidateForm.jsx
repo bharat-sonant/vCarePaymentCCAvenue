@@ -21,7 +21,9 @@ const EntityValidateForm = () =>{
   const handleOnChange = (e) => {
     const numberPattern = /^\d+$/;
     if (numberPattern.test(e.target.value) || e.target.value === '') {
-      setMobileNo(e.target.value);
+      const value = e.target.value;
+      const tenDigitValue = value.slice(0, 10);
+      setMobileNo(tenDigitValue);
       setError(false)
     }
   }
@@ -71,7 +73,7 @@ const EntityValidateForm = () =>{
                 <CardContent>
                   <Box >
                     <TextField  onChange={handleOnChange} value={mobileNo} type='' label="Registered Mobile Number" id="inputCardNumber" sx={{ width: '100%',marginBottom:'30px',}} color='success'
-                      error={error} helperText={error ? 'Enter valid registered mobile number' : ''} />
+                      error={error} helperText={error ? 'Enter valid registered mobile number' : '' } />
                       {/* InputProps={{ startAdornment: <InputAdornment position="start" >MNZ</InputAdornment> }} /> */}
 
 
