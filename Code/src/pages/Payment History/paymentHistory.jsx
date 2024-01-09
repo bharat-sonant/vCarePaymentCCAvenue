@@ -38,6 +38,7 @@ const PaymentHistory=()=> {
     if (event.target.checked) {
        setSelectedRows([...selectedRows, id]);
        let total=Number(totalPayment)+Number(amount);
+       localStorage.setItem('payMonths',[...selectedRows, id])
        setTotalPayment(total);
        setHidden(false)
 
@@ -72,6 +73,8 @@ const PaymentHistory=()=> {
         setTotalPayment(0);
         setHidden(true);
   };
+
+  
   return (
     <div className='back-penal'>
     <div className='main-container container-fluid container-fluid-44 m-auto'>

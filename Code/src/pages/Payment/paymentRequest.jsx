@@ -10,6 +10,16 @@ import { deleteCCAvenuePaymentRequestHistory } from '../../services/paymentStatu
 
 const PaymentRequest=() => {
 
+  const getCurrentDate = (separator='') => {
+
+    let newDate = new Date()
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    
+    return `${date<10?`0${date}`:`${date}`}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
+  }
+  
   return (
     <div className='back-penal'>
       <div className='main-container container-fluid container-fluid-44 m-auto'>
@@ -26,24 +36,15 @@ const PaymentRequest=() => {
                       <tbody>
                       <tr >
                           <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
-                            <snap className='heading0'> Current Date.  </snap>
+                            <snap className='heading0'> Current Date  </snap>
                           </th>
                           <td className='border-0 ' style={{ width: '0%', }}>
-                            {localStorage.getItem('cardNo')}
+                            {getCurrentDate('-')}
                           </td>
                         </tr>
                         <tr >
                           <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
-                            <snap className='heading0'> Card No.  </snap>
-                          </th>
-                          <td className='border-0 ' style={{ width: '0%', }}>
-                            {localStorage.getItem('cardNo')}
-                          </td>
-                        </tr>
-
-                        <tr >
-                          <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
-                            <snap className='heading0'> Payabel Months  </snap>
+                            <snap className='heading0'> Card Number  </snap>
                           </th>
                           <td className='border-0 ' style={{ width: '0%', }}>
                             {localStorage.getItem('cardNo')}
@@ -58,6 +59,16 @@ const PaymentRequest=() => {
                             {localStorage.getItem('transactionId')}
                           </td>
                         </tr>
+
+                        <tr >
+                          <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
+                            <snap className='heading0'> Payabel Months  </snap>
+                          </th>
+                          <td className='border-0 ' style={{ width: '0%', }}>
+                            {localStorage.getItem('payMonths')}
+                          </td>
+                        </tr>
+
                         <tr >
                           <th className='border-0 text-left mb-0' style={{ width: '0%', textAlign: 'left', }} scope="row" >
                             <snap className='heading0'> Amount (₹) </snap>
@@ -109,6 +120,7 @@ function PaymentButton() {
     const encryptedData = ccav.encrypt(param,workingKey);
     setEnRequest(encryptedData);
   }
+
   const handleCancel=async()=>{
     await deleteCCAvenuePaymentRequestHistory();
     await navigate('/payment-history');
