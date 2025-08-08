@@ -14,16 +14,24 @@ import { showAlert } from '../../services/commonService';
 
 
 const DashboardForm = () => {
+
   const navigate = useNavigate();
   const [cardNo, setCardNo] = useState('');
   const [error, setError] = useState(false)
   const handleOnChange = (e) => {
+    
     const numberPattern = /^\d+$/;
     if (numberPattern.test(e.target.value) || e.target.value === '') {
       const value = e.target.value;
       const sixDigitValue = value.slice(0, 6);
       setCardNo(sixDigitValue);
       setError(false)
+
+      // Store with MNZ immediately
+      if (sixDigitValue.length === 6) {
+        localStorage.setItem("cardNo", `MNZ${sixDigitValue}`);
+      }
+
     }
   }
   const handleSubmit = async () => {
@@ -36,22 +44,23 @@ const DashboardForm = () => {
         setError(true);
       }
       else {
-        localStorage.setItem("cardNo", "MNZ" + cardNo);
-        localStorage.setItem("cardDetailParams",JSON.stringify({cardNo:cardNo,ward:data.ward,lineNo:data.line}));
-        getCardDetail(data.ward, data.line,cardNo).then(data => {
+        // localStorage.setItem("cardNo", `MNZ${cardNo}`);
+        console.log('cardNo',localStorage.getItem("cardNo"))
+        localStorage.setItem("cardDetailParams", JSON.stringify({ cardNo: cardNo, ward: data.ward, lineNo: data.line }));
+        getCardDetail(data.ward, data.line, cardNo).then(data => {
           if (data !== null) {
             const houseId = localStorage.getItem('houseTypeId')
             if (houseId === '19' || houseId === '20') {
               navigate('/EntityValidateForm')
-            }else{
+            } else {
               navigate('/cardDetail')
             }
-          }else{
-            showAlert('House data not available',"Error");
-          
+          } else {
+            showAlert('House data not available', "Error");
+
           }
         });
-        
+
       }
     })
 
@@ -59,28 +68,28 @@ const DashboardForm = () => {
   return (
     <div className='back-penal'>
       <div className='main-container container-fluid container-fluid-44 m-auto'>
-     <Header title={'Payment'}/>
+        <Header title={'Payment'} />
         <div className='row'>
           <div className='col-12'>
             <div className='d-flex  align-items-center ' style={{ height: '100vh' }}>
-              <Card style={{ width: '100%' ,boxShadow:'none' }} >
+              <Card style={{ width: '100%', boxShadow: 'none' }} >
                 <CardContent>
                   <Box >
 
-                    <TextField  onChange={handleOnChange} value={cardNo} type='' label="Card Number" id="inputCardNumber" sx={{ width: '100%',marginBottom:'30px',}} color='success'
+                    <TextField onChange={handleOnChange} value={cardNo} type='' label="Card Number" id="inputCardNumber" sx={{ width: '100%', marginBottom: '30px', }} color='success'
                       error={error} helperText={error ? 'Enter valid card number' : ''}
                       InputProps={{ startAdornment: <InputAdornment position="start" >MNZ</InputAdornment> }} />
 
 
                     <div className='d-flex align-items-center'>
-                      <Button className='btn '  variant="contained"  onClick={handleSubmit} style={{width:'100%',backgroundColor:error ? 'red' : '#24B903'}}>Submit</Button>
+                      <Button className='btn ' variant="contained" onClick={handleSubmit} style={{ width: '100%', backgroundColor: error ? 'red' : '#24B903' }}>Submit</Button>
                     </div>
                   </Box>
                 </CardContent>
                 {/* <CardActions> 
       
       </CardActions> */}
-              </Card>             
+              </Card>
             </div>
           </div>
         </div>

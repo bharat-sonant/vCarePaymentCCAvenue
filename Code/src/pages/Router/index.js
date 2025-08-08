@@ -7,6 +7,7 @@ import TransactionHistory from '../Transaction History/transactionHistory.jsx';
 import PaymentCancel from '../Payment Status Page/paymentCancel.jsx';
 import PaymentSuccess from '../Payment Status Page/paymentSuccess.jsx';
 import PaymentRequest from '../Payment/paymentRequest.jsx';
+import PaymentStatus from '../Payment/paymentStatusRequest.jsx'
 import EntityValidateForm from '../Dashboard/EntityValidateForm.jsx';
 
 
@@ -24,6 +25,7 @@ const RouterComponent=() => {
         <Route path='/payment-cancel' element={<PaymentCancel/>} /> 
         <Route path='/payment-success' element={<PaymentSuccess/>} /> 
         <Route path='/payment-request' element={<PaymentRequest/>} /> 
+        <Route path='/payment-status' element={<PaymentStatus/>} /> 
 
         {/* <Route path='/dashboard' element={<Dashbord />} />
         <Route path='/:userId/:city' element={<Topbar />} />

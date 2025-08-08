@@ -117,6 +117,9 @@ function PaymentButton() {
      const param = "merchant_id="+`${merchant_Id}`+"&order_id="+`${order_Id}`+"&currency="+`${currency}`+"&amount="+`${amount}`+
      "&redirect_url="+`${redirect_url}`+"&cancel_url="+`${cancel_url}`+"&language="+`${language}`;
 
+    //  const param = "merchant_id="+`${merchant_Id}`+"&order_id=MNZ161052i5qB"+"&reference_no=";
+
+
     const encryptedData = ccav.encrypt(param,workingKey);
     setEnRequest(encryptedData);
   }

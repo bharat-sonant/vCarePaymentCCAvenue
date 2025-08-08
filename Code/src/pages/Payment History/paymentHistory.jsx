@@ -196,7 +196,7 @@ function PaymentButton({transactionAmount,monthYear,hidden}) {
     if(transactionAmount>0){
     const houseId = localStorage.getItem('houseTypeId')
     await saveCCAvenuePaymentRequestHistory(transactionAmount,monthYear,houseId);
-    await navigate('/payment-request')
+    await navigate('/payment-status')
     
   }
 
